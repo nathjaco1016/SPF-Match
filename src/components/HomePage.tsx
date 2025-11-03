@@ -1,12 +1,6 @@
 import { Button } from "../assets/button";
 import { Card, CardContent } from "../assets/card";
-import {
-  Shield,
-  Clock,
-  BookOpen,
-  Sun,
-  Sparkles,
-} from "lucide-react";
+import { Sun, Sparkles, Shield, Clock, BookOpen } from "lucide-react";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;

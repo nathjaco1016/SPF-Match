@@ -3,6 +3,7 @@ import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Alert, AlertDescription } from "../assets/alert";
 import { Clock, MapPin, Sun, AlertCircle } from "lucide-react";
+import { REAPPLICATION_BASE_TIME, UV_ADJUSTMENT_FACTORS, API_ENDPOINTS, DEFAULT_UV_INDEX, UV_LEVELS } from "../constants/config";
 
 interface ReminderPageProps {
   fitzpatrickType?: number;
@@ -30,24 +31,19 @@ export function ReminderPage({
     uv: number,
     fitzpatrick: number,
   ): number => {
-    // Base time in minutes - more sensitive skin needs more frequent application
-    const baseTime = {
-      1: 30, // Very fair skin - 30 min
-      2: 45, // Fair skin - 45 min
-      3: 60, // Medium skin - 60 min
-      4: 75, // Olive skin - 75 min
-      5: 90, // Brown skin - 90 min
-      6: 105, // Dark skin - 105 min
-    };
-
-    const skinBaseTime =
-      baseTime[fitzpatrick as keyof typeof baseTime] || 60;
+    const skinBaseTime = REAPPLICATION_BASE_TIME[fitzpatrick] || REAPPLICATION_BASE_TIME[3];
 
     // Adjust based on UV index
-    if (uv >= 8) return Math.floor(skinBaseTime * 0.5); // Extreme UV
-    if (uv >= 6) return Math.floor(skinBaseTime * 0.7); // High UV
-    if (uv >= 3) return Math.floor(skinBaseTime * 0.85); // Moderate UV
-    return skinBaseTime; // Low UV
+    if (uv >= UV_ADJUSTMENT_FACTORS.extreme.threshold) {
+      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.extreme.factor);
+    }
+    if (uv >= UV_ADJUSTMENT_FACTORS.high.threshold) {
+      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.high.factor);
+    }
+    if (uv >= UV_ADJUSTMENT_FACTORS.moderate.threshold) {
+      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.moderate.factor);
+    }
+    return skinBaseTime;
   };
 
   const getLocation = () => {
@@ -66,24 +62,36 @@ export function ReminderPage({
         // Fetch UV index from Open-Meteo API
         try {
           const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=uv_index`,
+            `${API_ENDPOINTS.UV_INDEX}?latitude=${latitude}&longitude=${longitude}&current=uv_index`,
           );
+
+          if (!response.ok) {
+            throw new Error(`API returned ${response.status}: ${response.statusText}`);
+          }
+
           const data = await response.json();
-          const currentUV = data.current.uv_index;
-          setUvIndex(currentUV);
+
+          if (!data?.current?.uv_index && data?.current?.uv_index !== 0) {
+            throw new Error("Invalid API response structure");
+          }
+
+          setUvIndex(data.current.uv_index);
         } catch (err) {
-          setError(
-            "Failed to fetch UV index. Using default value.",
-          );
-          setUvIndex(5); // Default moderate UV
+          console.error("UV Index fetch failed:", err);
+          const errorMessage = err instanceof Error
+            ? `Failed to fetch UV index: ${err.message}`
+            : "Failed to fetch UV index. Using default value.";
+          setError(errorMessage);
+          setUvIndex(DEFAULT_UV_INDEX);
         }
       },
       (err) => {
+        console.error("Geolocation error:", err);
         setError(
-          "Unable to retrieve your location. Please enable location services.",
+          `Unable to retrieve your location: ${err.message}. Please enable location services.`,
         );
         // Use default UV index if location fails
-        setUvIndex(5);
+        setUvIndex(DEFAULT_UV_INDEX);
       },
     );
   };
@@ -169,14 +177,11 @@ export function ReminderPage({
   const getUVLevel = (
     uv: number,
   ): { level: string; color: string } => {
-    if (uv >= 11)
-      return { level: "Extreme", color: "text-purple-600" };
-    if (uv >= 8)
-      return { level: "Very High", color: "text-red-600" };
-    if (uv >= 6)
-      return { level: "High", color: "text-orange-600" };
-    if (uv >= 3)
-      return { level: "Moderate", color: "text-yellow-600" };
+    for (const level of UV_LEVELS) {
+      if (uv >= level.threshold) {
+        return { level: level.level, color: level.color };
+      }
+    }
     return { level: "Low", color: "text-green-600" };
   };
 
