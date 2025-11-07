@@ -1,12 +1,17 @@
 export interface SunscreenProduct {
   name: string;
-  filterType: "Mineral" | "Chemical";
+  filterType: "Mineral" | "Chemical" | "Mixture" | "Physical";
   spf: number;
   vehicle: string;
-  tint: "Yes" | "No";
+  tint: "Yes" | "No" | "Transparent";
   price: number;
   size: number;
   description: string;
+  link?: string;
+  image?: string;
+  unitPrice?: number;
+  fitzpatrickScale?: string;
+  skinTypes?: string[];
 }
 
 export type SkinType = "normal" | "oily" | "dry" | "combination" | "sensitive";

@@ -1,11 +1,18 @@
+import { useState, useEffect } from "react";
 import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Badge } from "../assets/badge";
+import { Alert, AlertTitle, AlertDescription } from "../assets/alert";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { calculateFitzpatrickType, getSkinType } from "../utils/fitzpatrick";
 import { FITZPATRICK_INFO, SKIN_TYPE_INFO } from "../constants/skinTypeInfo";
 import { SUNSCREEN_DATABASE } from "../constants/sunscreenDatabase";
+import {
+  fetchSunscreenData,
+  groupProductsByType,
+} from "../services/googleSheetsService";
 import type { QuestionnaireAnswers } from "../types/questionnaire";
+import type { SunscreenProduct } from "../types/sunscreen";
 
 interface ResultsPageProps {
   answers: QuestionnaireAnswers;
@@ -16,6 +23,12 @@ export function ResultsPage({
   answers,
   onRestart,
 }: ResultsPageProps) {
+  const [sunscreenDatabase, setSunscreenDatabase] = useState<
+    Record<string, SunscreenProduct[]>
+  >({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const fitzpatrickType = calculateFitzpatrickType(answers);
   const skinType = getSkinType(answers);
   const skinTypeKey = `${fitzpatrickType}-${skinType}`;
@@ -23,15 +36,64 @@ export function ResultsPage({
   const fitzpatrickData = FITZPATRICK_INFO[fitzpatrickType];
   const skinTypeDescription = SKIN_TYPE_INFO[skinType];
 
+  // Fetch sunscreen data from Google Sheets
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const products = await fetchSunscreenData();
+        const grouped = groupProductsByType(products);
+        setSunscreenDatabase(grouped);
+      } catch (err) {
+        console.error("Failed to load sunscreen data:", err);
+        setError(
+          "Failed to load sunscreen recommendations. Using default data."
+        );
+        // Fallback to hardcoded database
+        setSunscreenDatabase(SUNSCREEN_DATABASE);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
   const recommendations =
+    sunscreenDatabase[skinTypeKey] ||
+    sunscreenDatabase["3-normal"] ||
     SUNSCREEN_DATABASE[skinTypeKey] ||
     SUNSCREEN_DATABASE["3-normal"];
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">
+              Loading sunscreen recommendations...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <h1 className="mb-8">
         Your Recommended Sunscreen and Care
       </h1>
+
+      {error && (
+        <Alert variant="destructive" className="mb-6">
+          <AlertTitle>Warning</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
       <div className="grid md:grid-cols-2 gap-6 mb-12">
         <Card>
@@ -128,7 +190,7 @@ export function ResultsPage({
                       </Badge>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-6 flex-wrap">
                     <div>
                       <span className="text-muted-foreground">
                         Price:
@@ -151,13 +213,30 @@ export function ResultsPage({
                       </span>
                       <span className="ml-2">
                         $
-                        {(
-                          sunscreen.price / sunscreen.size
-                        ).toFixed(2)}
+                        {sunscreen.unitPrice
+                          ? sunscreen.unitPrice.toFixed(2)
+                          : (sunscreen.price / sunscreen.size).toFixed(2)}
                         /fl oz
                       </span>
                     </div>
                   </div>
+                  {sunscreen.link && (
+                    <div className="mt-4">
+                      <Button
+                        asChild
+                        variant="default"
+                        size="sm"
+                      >
+                        <a
+                          href={sunscreen.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Product
+                        </a>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardContent>
