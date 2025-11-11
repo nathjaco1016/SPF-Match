@@ -1,49 +1,65 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Alert, AlertDescription } from "../assets/alert";
 import { Clock, MapPin, Sun, AlertCircle } from "lucide-react";
-import { REAPPLICATION_BASE_TIME, UV_ADJUSTMENT_FACTORS, API_ENDPOINTS, DEFAULT_UV_INDEX, UV_LEVELS } from "../constants/config";
 
 interface ReminderPageProps {
   fitzpatrickType?: number;
+  location: { lat: number; lon: number } | null;
+  setLocation: (location: { lat: number; lon: number } | null) => void;
+  uvIndex: number | null;
+  setUvIndex: (uvIndex: number | null) => void;
+  timeRemaining: number | null;
+  setTimeRemaining: (time: number | null) => void;
+  isActive: boolean;
+  setIsActive: (active: boolean) => void;
 }
 
 export function ReminderPage({
   fitzpatrickType = 3,
+  location,
+  setLocation,
+  uvIndex,
+  setUvIndex,
+  timeRemaining,
+  setTimeRemaining,
+  isActive,
+  setIsActive,
 }: ReminderPageProps) {
-  const [location, setLocation] = useState<{
-    lat: number;
-    lon: number;
-  } | null>(null);
-  const [uvIndex, setUvIndex] = useState<number | null>(null);
-  const [timeRemaining, setTimeRemaining] = useState<
-    number | null
-  >(null);
-  const [isActive, setIsActive] = useState(false);
   const [error, setError] = useState<string>("");
-  const [permissionGranted, setPermissionGranted] =
-    useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [permissionGranted, setPermissionGranted] = useState(false);
+
+  // Automatically get location on mount
+  useEffect(() => {
+    if (location === null && uvIndex === null) {
+      getLocation();
+    }
+  }, []);
 
   // Calculate reapplication time based on UV index and Fitzpatrick type
   const calculateReapplicationTime = (
     uv: number,
     fitzpatrick: number,
   ): number => {
-    const skinBaseTime = REAPPLICATION_BASE_TIME[fitzpatrick] || REAPPLICATION_BASE_TIME[3];
+    // Time in minutes based on Fitzpatrick type and UV index
+    const timeTable: { [key: number]: { [key: string]: number } } = {
+      1: { '1-2': 120, '3-5': 60, '6-7': 40, '8-10': 20, '11+': 10 },
+      2: { '1-2': 120, '3-5': 80, '6-7': 60, '8-10': 30, '11+': 20 },
+      3: { '1-2': 180, '3-5': 100, '6-7': 80, '8-10': 40, '11+': 30 },
+      4: { '1-2': 180, '3-5': 120, '6-7': 100, '8-10': 60, '11+': 40 },
+      5: { '1-2': 200, '3-5': 140, '6-7': 120, '8-10': 80, '11+': 60 },
+      6: { '1-2': 200, '3-5': 160, '6-7': 140, '8-10': 100, '11+': 80 },
+    };
 
-    // Adjust based on UV index
-    if (uv >= UV_ADJUSTMENT_FACTORS.extreme.threshold) {
-      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.extreme.factor);
-    }
-    if (uv >= UV_ADJUSTMENT_FACTORS.high.threshold) {
-      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.high.factor);
-    }
-    if (uv >= UV_ADJUSTMENT_FACTORS.moderate.threshold) {
-      return Math.floor(skinBaseTime * UV_ADJUSTMENT_FACTORS.moderate.factor);
-    }
-    return skinBaseTime;
+    const skinTypeTable = timeTable[fitzpatrick] || timeTable[3];
+
+    // Determine UV range
+    if (uv >= 11) return skinTypeTable['11+'];
+    if (uv >= 8) return skinTypeTable['8-10'];
+    if (uv >= 6) return skinTypeTable['6-7'];
+    if (uv >= 3) return skinTypeTable['3-5'];
+    return skinTypeTable['1-2'];
   };
 
   const getLocation = () => {
@@ -62,36 +78,24 @@ export function ReminderPage({
         // Fetch UV index from Open-Meteo API
         try {
           const response = await fetch(
-            `${API_ENDPOINTS.UV_INDEX}?latitude=${latitude}&longitude=${longitude}&current=uv_index`,
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=uv_index`,
           );
-
-          if (!response.ok) {
-            throw new Error(`API returned ${response.status}: ${response.statusText}`);
-          }
-
           const data = await response.json();
-
-          if (!data?.current?.uv_index && data?.current?.uv_index !== 0) {
-            throw new Error("Invalid API response structure");
-          }
-
-          setUvIndex(data.current.uv_index);
+          const currentUV = data.current.uv_index;
+          setUvIndex(currentUV);
         } catch (err) {
-          console.error("UV Index fetch failed:", err);
-          const errorMessage = err instanceof Error
-            ? `Failed to fetch UV index: ${err.message}`
-            : "Failed to fetch UV index. Using default value.";
-          setError(errorMessage);
-          setUvIndex(DEFAULT_UV_INDEX);
+          setError(
+            "Failed to fetch UV index. Using default value.",
+          );
+          setUvIndex(5); // Default moderate UV
         }
       },
       (err) => {
-        console.error("Geolocation error:", err);
         setError(
-          `Unable to retrieve your location: ${err.message}. Please enable location services.`,
+          "Unable to retrieve your location. Please enable location services.",
         );
         // Use default UV index if location fails
-        setUvIndex(DEFAULT_UV_INDEX);
+        setUvIndex(5);
       },
     );
   };
@@ -99,6 +103,11 @@ export function ReminderPage({
   const startTimer = () => {
     if (uvIndex === null) {
       getLocation();
+      return;
+    }
+
+    // If UV index is 1, don't start timer
+    if (uvIndex <= 1) {
       return;
     }
 
@@ -120,53 +129,10 @@ export function ReminderPage({
   };
 
   const restartTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
     setIsActive(false);
     setTimeRemaining(null);
     startTimer();
   };
-
-  useEffect(() => {
-    if (
-      isActive &&
-      timeRemaining !== null &&
-      timeRemaining > 0
-    ) {
-      timerRef.current = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev === null || prev <= 1) {
-            // Timer reached 0
-            if (timerRef.current)
-              clearInterval(timerRef.current);
-            setIsActive(false);
-
-            // Show notification
-            if (
-              "Notification" in window &&
-              Notification.permission === "granted"
-            ) {
-              new Notification("SPFMatch Reminder", {
-                body: "Time to reapply your sunscreen!",
-                icon: "/favicon.ico",
-                badge: "/favicon.ico",
-              });
-            }
-
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, [isActive, timeRemaining]);
 
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
@@ -177,11 +143,14 @@ export function ReminderPage({
   const getUVLevel = (
     uv: number,
   ): { level: string; color: string } => {
-    for (const level of UV_LEVELS) {
-      if (uv >= level.threshold) {
-        return { level: level.level, color: level.color };
-      }
-    }
+    if (uv >= 11)
+      return { level: "Extreme", color: "text-purple-600" };
+    if (uv >= 8)
+      return { level: "Very High", color: "text-red-600" };
+    if (uv >= 6)
+      return { level: "High", color: "text-orange-600" };
+    if (uv >= 3)
+      return { level: "Moderate", color: "text-yellow-600" };
     return { level: "Low", color: "text-green-600" };
   };
 
@@ -203,7 +172,7 @@ export function ReminderPage({
           <strong>Important:</strong> Remember to reapply
           sunscreen after swimming, sweating, and towel drying,
           regardless of the time interval. Apply sunscreen to
-          all areas of skin exposed to the sun and apply at
+          all areas of skin exposed to the sun, and apply at
           least 15 minutes before sun exposure.
         </AlertDescription>
       </Alert>
@@ -233,7 +202,7 @@ export function ReminderPage({
               </div>
             ) : (
               <p className="text-muted-foreground">
-                Click 'Get Location' to fetch UV index
+                Fetching UV index...
               </p>
             )}
           </CardContent>
@@ -247,7 +216,11 @@ export function ReminderPage({
             </div>
           </CardHeader>
           <CardContent>
-            {location ? (
+            {error ? (
+              <div className="text-sm text-destructive">
+                {error}
+              </div>
+            ) : location ? (
               <div>
                 <p className="mb-1">
                   Lat: {location.lat.toFixed(4)}
@@ -257,25 +230,13 @@ export function ReminderPage({
                 </p>
               </div>
             ) : (
-              <div>
-                <p className="text-muted-foreground mb-2">
-                  Location not set
-                </p>
-                <Button size="sm" onClick={getLocation}>
-                  Get Location
-                </Button>
-              </div>
+              <p className="text-muted-foreground">
+                Fetching location...
+              </p>
             )}
           </CardContent>
         </Card>
       </div>
-
-      {error && (
-        <Alert variant="destructive" className="mb-8">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
 
       <Card className="mb-8">
         <CardHeader>
@@ -309,15 +270,19 @@ export function ReminderPage({
             <div className="text-center">
               <p className="text-muted-foreground mb-4">
                 {uvIndex !== null
-                  ? `Recommended reapplication: every ${calculateReapplicationTime(
-                      uvIndex,
-                      fitzpatrickType,
-                    )} minutes`
+                  ? uvIndex <= 1
+                    ? "The UV index is currently very low. Check back later as UV levels typically increase throughout the day."
+                    : `Recommended reapplication: every ${calculateReapplicationTime(
+                        uvIndex,
+                        fitzpatrickType,
+                      )} minutes`
                   : "Get your location to calculate recommended reapplication time"}
               </p>
-              <Button onClick={startTimer}>
+              <Button onClick={startTimer} disabled={uvIndex !== null && uvIndex <= 1}>
                 {uvIndex !== null
-                  ? "Start Timer"
+                  ? uvIndex <= 1
+                    ? "No Timer Needed Right Now"
+                    : "Start Timer"
                   : "Get Location & Start Timer"}
               </Button>
             </div>
@@ -332,8 +297,8 @@ export function ReminderPage({
         <CardContent>
           <p className="text-muted-foreground">
             {fitzpatrickType
-              ? `Fitzpatrick Type ${fitzpatrickType} - Your timer is adjusted based on your skin's sensitivity to UV exposure.`
-              : "Complete the questionnaire to get a personalized timer based on your Fitzpatrick skin type."}
+              ? `Fitzpatrick Type ${['I', 'II', 'III', 'IV', 'V', 'VI'][fitzpatrickType - 1]} - Your timer is adjusted based on your skin's sensitivity to UV exposure.`
+              : "Complete the quiz to get a personalized timer based on your Fitzpatrick skin type."}
           </p>
         </CardContent>
       </Card>

@@ -140,7 +140,7 @@ export async function fetchSunscreenData(): Promise<SunscreenProduct[]> {
     // Transform rows to products
     const products = data.values
       .map((row: string[]) => transformRowToProduct(row))
-      .filter((product): product is SunscreenProduct => product !== null);
+      .filter((product: SunscreenProduct | null): product is SunscreenProduct => product !== null);
 
     return products;
   } catch (error) {
@@ -175,4 +175,69 @@ export function groupProductsByType(
   });
 
   return grouped;
+}
+
+/**
+ * Filter products based on user preferences
+ */
+export function filterByPreferences(
+  products: SunscreenProduct[],
+  preferences: {
+    filterType?: string[];
+    tint?: string[];
+    vehicle?: string[];
+  }
+): SunscreenProduct[] {
+  return products.filter((product) => {
+    // Filter by filter type
+    if (preferences.filterType && preferences.filterType.length > 0) {
+      if (!preferences.filterType.includes("Anything is fine")) {
+        const matchesFilter = preferences.filterType.some(
+          (pref) => product.filterType.toLowerCase() === pref.toLowerCase()
+        );
+        if (!matchesFilter) return false;
+      }
+    }
+
+    // Filter by tint
+    if (preferences.tint && preferences.tint.length > 0) {
+      if (!preferences.tint.includes("Anything is fine")) {
+        const matchesTint = preferences.tint.some((pref) => {
+          const productTintLower = product.tint.toLowerCase();
+          const prefLower = pref.toLowerCase();
+
+          // Handle "Skin-colored" mapping to "Yes" or "Transparent"
+          if (prefLower === "skin-colored") {
+            return productTintLower === "yes" || productTintLower === "transparent";
+          }
+          // "No tint" maps to "No"
+          if (prefLower === "no tint") {
+            return productTintLower === "no";
+          }
+          // Direct match for "Transparent"
+          return productTintLower === prefLower;
+        });
+        if (!matchesTint) return false;
+      }
+    }
+
+    // Filter by vehicle (form)
+    if (preferences.vehicle && preferences.vehicle.length > 0) {
+      if (!preferences.vehicle.includes("Anything is fine")) {
+        const matchesVehicle = preferences.vehicle.some((pref) => {
+          const productVehicleLower = product.vehicle.toLowerCase();
+          const prefLower = pref.toLowerCase();
+
+          // Handle "Cream/lotion" matching cream, lotion, or cream/lotion
+          if (prefLower === "cream/lotion") {
+            return productVehicleLower.includes("cream") || productVehicleLower.includes("lotion");
+          }
+          return productVehicleLower.includes(prefLower);
+        });
+        if (!matchesVehicle) return false;
+      }
+    }
+
+    return true;
+  });
 }

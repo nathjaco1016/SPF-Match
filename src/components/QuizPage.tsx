@@ -204,6 +204,25 @@ export function calculateFitzpatrickType(
   return 6;
 }
 
+export function getSkinType(
+  answers: Record<string, string | string[]>,
+): string {
+  const skinTypeQuestion = questions.find((q) => q.id === "skinType");
+  if (!skinTypeQuestion || !skinTypeQuestion.types) {
+    return "normal"; // Default fallback
+  }
+
+  const answer = answers["skinType"];
+  if (typeof answer === "string") {
+    const optionIndex = skinTypeQuestion.options.indexOf(answer);
+    if (optionIndex !== -1 && skinTypeQuestion.types[optionIndex]) {
+      return skinTypeQuestion.types[optionIndex];
+    }
+  }
+
+  return "normal"; // Default fallback
+}
+
 export function QuizPage({
   onSubmit,
 }: QuizPageProps) {
