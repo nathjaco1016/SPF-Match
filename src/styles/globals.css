@@ -129,6 +129,16 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  ::selection {
+    background-color: #fde68a;
+    color: #78350f;
+  }
+
+  ::-moz-selection {
+    background-color: #fde68a;
+    color: #78350f;
+  }
 }
 
 /**

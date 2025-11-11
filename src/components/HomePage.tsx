@@ -10,7 +10,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-amber-50 to-background border-b border-border">
+      <div className="bg-background border-b border-border">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
@@ -22,23 +22,23 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Get personalized sunscreen recommendations based
               on your unique skin characteristics, Fitzpatrick
-              skin type, and skin care needs. Our science-backed
-              questionnaire analyzes your features to find the
+              skin type, and skin care needs. Our dermatologist-backed
+              quiz analyzes your features to find the
               perfect SPF protection for you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Button
                 size="lg"
-                onClick={() => onNavigate("questionnaire")}
+                onClick={() => onNavigate("quiz")}
                 className="gap-2"
               >
                 <Sparkles className="w-5 h-5" />
-                Take the Questionnaire
+                Take the Quiz
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => onNavigate("blogs")}
+                onClick={() => onNavigate("resources")}
               >
                 Learn More
               </Button>
@@ -60,7 +60,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="grid md:grid-cols-3 gap-6">
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/50"
-            onClick={() => onNavigate("questionnaire")}
+            onClick={() => onNavigate("quiz")}
           >
             <CardContent className="pt-6 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
@@ -68,7 +68,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
               <h3 className="mb-3">Find Your Match</h3>
               <p className="text-muted-foreground">
-                Answer 11 questions about your skin, hair, and
+                Answer questions about your skin, hair, and
                 sun sensitivity to get personalized sunscreen
                 recommendations.
               </p>
@@ -94,7 +94,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/50"
-            onClick={() => onNavigate("blogs")}
+            onClick={() => onNavigate("resources")}
           >
             <CardContent className="pt-6 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
