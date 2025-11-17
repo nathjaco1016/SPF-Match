@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Badge } from "../assets/badge";
@@ -97,7 +98,7 @@ export function ResultsPage({
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <h1 className="mb-8">
-        Your Recommended Sunscreen and Care
+        Your Skin
       </h1>
 
       {error && (
@@ -264,10 +265,19 @@ export function ResultsPage({
           ))}
         </div>
       )}
-
-      <div className="text-center">
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
         <Button size="lg" onClick={onRestart}>
           Restart Quiz
+        </Button>
+        <Button size="lg" variant="outline" asChild className="gap-2">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfY9xCSju8owhTAGZZphkUsMWJflbYndIDjeNf78UFoeWOkGQ/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Share Feedback
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </Button>
       </div>
     </div>
