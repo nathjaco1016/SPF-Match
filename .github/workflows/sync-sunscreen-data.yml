@@ -58,16 +58,33 @@ jobs:
           # Transform the data using Node.js
           node .github/scripts/transform-sunscreen-data.cjs /tmp/sheets_response.json public/data/sunscreen-database.json
 
+          echo ""
+          echo "Transform complete. Output preview:"
+          cat public/data/sunscreen-database.json | head -30
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Show current state before adding
+          echo "Current git status:"
+          git status
+
           git add public/data/sunscreen-database.json
+
+          # Show what would be committed
+          echo ""
+          echo "Changes to be committed:"
+          git diff --staged --stat
 
           # Only commit if there are changes
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo ""
+            echo "⚠️ No changes to commit - data is identical to current version"
           else
+            echo ""
+            echo "📝 Changes detected, committing..."
             git commit -m "Update sunscreen database from Google Sheets"
             git push
             echo "✅ Data updated and pushed. Deployment will trigger automatically."
