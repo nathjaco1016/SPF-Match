@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync Sunscreen Data from Google Sheets"]
+    types:
+      - completed
+    branches:
+      - main
 
 permissions:
   contents: read
