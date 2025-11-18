@@ -66,8 +66,14 @@ export function ResultsPage({
         setError(null);
 
         // Use base path for GitHub Pages deployment
-        const basePath = import.meta.env.MODE === 'production' ? '/SPF-Match/' : '/';
-        const response = await fetch(`${basePath}data/sunscreen-database.json`);
+        // Check if we're on the production domain
+        const basePath = window.location.hostname === 'nathjaco1016.github.io' ? '/SPF-Match/' : '/';
+        const response = await fetch(`${basePath}data/sunscreen-database.json`, {
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
         if (!response.ok) {
           throw new Error('Failed to load sunscreen data');
         }
