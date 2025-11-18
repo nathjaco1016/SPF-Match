@@ -40,7 +40,7 @@ jobs:
           mkdir -p public/data
 
           # Transform the data using Node.js
-          node .github/scripts/transform-sunscreen-data.js /tmp/sheets_response.json public/data/sunscreen-database.json
+          node .github/scripts/transform-sunscreen-data.cjs /tmp/sheets_response.json public/data/sunscreen-database.json
 
       - name: Commit and push if changed
         run: |
