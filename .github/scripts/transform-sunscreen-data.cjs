@@ -4,8 +4,7 @@
  * Transform Google Sheets data into the sunscreen database format
  *
  * Expected Google Sheets format:
- * Row 1: Headers (name, filterType, spf, vehicle, tint, price, size, description, fitzpatrickType, skinType, link)
- * Row 2+: Data rows
+ * Sunscreen_Name, Fitzpatrick_Scale, Skin_Type, Filter_Type, SPF, Vehicle, Tint, Price, Size(oz), Unit_Price, Image, Link
  */
 
 const fs = require('fs');
@@ -14,7 +13,7 @@ const fs = require('fs');
 const [inputFile, outputFile] = process.argv.slice(2);
 
 if (!inputFile || !outputFile) {
-  console.error('Usage: node transform-sunscreen-data.js <input-file> <output-file>');
+  console.error('Usage: node transform-sunscreen-data.cjs <input-file> <output-file>');
   process.exit(1);
 }
 
@@ -32,11 +31,6 @@ try {
 if (!sheetsResponse.values || sheetsResponse.values.length === 0) {
   console.error('No data found in sheets response');
   console.error('This likely means your Google Sheet is empty or the API call failed.');
-  console.error('Please check:');
-  console.error('1. Your Google Sheet has data with proper headers in Row 1');
-  console.error('2. The sheet is named "Sheet1" or update the workflow');
-  console.error('3. The Google Sheets API is enabled');
-  console.error('4. The API key and Sheet ID are correct in GitHub Secrets');
   console.error('\nReceived response:');
   console.error(JSON.stringify(sheetsResponse, null, 2));
   process.exit(1);
@@ -44,15 +38,7 @@ if (!sheetsResponse.values || sheetsResponse.values.length === 0) {
 
 const [headers, ...rows] = sheetsResponse.values;
 
-// Validate required headers
-const requiredHeaders = ['name', 'filterType', 'spf', 'vehicle', 'tint', 'price', 'size', 'description', 'fitzpatrickType', 'skinType'];
-const missingHeaders = requiredHeaders.filter(h => !headers.includes(h));
-
-if (missingHeaders.length > 0) {
-  console.error(`Missing required headers: ${missingHeaders.join(', ')}`);
-  console.error(`Found headers: ${headers.join(', ')}`);
-  process.exit(1);
-}
+console.log(`Found ${rows.length} rows with headers: ${headers.join(', ')}`);
 
 // Create index map for headers
 const headerIndex = {};
@@ -60,41 +46,111 @@ headers.forEach((header, index) => {
   headerIndex[header] = index;
 });
 
+// Helper function to parse Fitzpatrick scale ranges (e.g., "V–VI" -> [5, 6])
+function parseFitzpatrickScale(scale) {
+  if (!scale) return [];
+
+  // Remove whitespace
+  scale = scale.trim();
+
+  // Convert roman numerals to numbers
+  const romanToNum = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6 };
+
+  // Handle ranges like "V–VI" or "I–III"
+  const parts = scale.split(/[-–—]/);
+
+  if (parts.length === 2) {
+    const start = romanToNum[parts[0].trim()];
+    const end = romanToNum[parts[1].trim()];
+    const result = [];
+    for (let i = start; i <= end; i++) {
+      result.push(i);
+    }
+    return result;
+  } else if (parts.length === 1 && romanToNum[parts[0]]) {
+    return [romanToNum[parts[0]]];
+  }
+
+  return [];
+}
+
+// Helper function to parse skin types (e.g., "Oily, Combination" -> ["oily", "combination"])
+function parseSkinTypes(skinTypeStr) {
+  if (!skinTypeStr) return [];
+
+  return skinTypeStr
+    .split(',')
+    .map(s => s.trim().toLowerCase())
+    .filter(s => s.length > 0);
+}
+
+// Helper function to normalize tint values
+function normalizeTint(tint) {
+  if (!tint) return 'Untinted';
+  tint = tint.trim().toLowerCase();
+  if (tint === 'no' || tint === 'untinted') return 'Untinted';
+  if (tint === 'yes' || tint === 'tinted') return 'Tinted';
+  return tint.charAt(0).toUpperCase() + tint.slice(1); // Capitalize first letter
+}
+
 // Transform rows into products grouped by skin type
 const database = {};
+
+// Initialize all combinations
+for (let fitz = 1; fitz <= 6; fitz++) {
+  for (const skin of ['normal', 'oily', 'dry', 'combination', 'sensitive']) {
+    database[`${fitz}-${skin}`] = [];
+  }
+}
 
 rows.forEach((row, rowIndex) => {
   // Skip empty rows
   if (!row || row.length === 0) return;
 
   try {
+    const name = row[headerIndex['Sunscreen_Name']] || '';
+    const fitzpatrickScale = row[headerIndex['Fitzpatrick_Scale']] || '';
+    const skinTypeStr = row[headerIndex['Skin_Type']] || '';
+    const filterType = row[headerIndex['Filter_Type']] || '';
+    const spf = row[headerIndex['SPF']] || '';
+    const vehicle = row[headerIndex['Vehicle']] || '';
+    const tint = row[headerIndex['Tint']] || '';
+    const priceStr = row[headerIndex['Price']] || '';
+    const sizeStr = row[headerIndex['Size(oz)']] || '';
+    const link = row[headerIndex['Link']] || '';
+
+    // Parse price (remove $ sign)
+    const price = parseFloat(priceStr.replace('$', '')) || 0;
+    const size = parseFloat(sizeStr) || 0;
+
     const product = {
-      name: row[headerIndex.name] || '',
-      filterType: row[headerIndex.filterType] || '',
-      spf: parseInt(row[headerIndex.spf]) || 0,
-      vehicle: row[headerIndex.vehicle] || '',
-      tint: row[headerIndex.tint] || '',
-      price: parseFloat(row[headerIndex.price]) || 0,
-      size: parseFloat(row[headerIndex.size]) || 0,
-      description: row[headerIndex.description] || '',
-      link: row[headerIndex.link] || ''
+      name,
+      filterType,
+      spf: parseInt(spf) || 0,
+      vehicle,
+      tint: normalizeTint(tint),
+      price,
+      size,
+      description: `SPF ${spf} ${filterType} sunscreen`,
+      link,
+      unitPrice: size > 0 ? price / size : 0
     };
 
-    // Calculate unit price
-    product.unitPrice = product.size > 0 ? product.price / product.size : 0;
+    // Parse Fitzpatrick types and skin types
+    const fitzpatrickTypes = parseFitzpatrickScale(fitzpatrickScale);
+    const skinTypes = parseSkinTypes(skinTypeStr);
 
-    // Get skin type key
-    const fitzpatrickType = row[headerIndex.fitzpatrickType];
-    const skinType = row[headerIndex.skinType];
-    const key = `${fitzpatrickType}-${skinType}`;
-
-    // Initialize array if needed
-    if (!database[key]) {
-      database[key] = [];
+    // Add product to all matching combinations
+    for (const fitzType of fitzpatrickTypes) {
+      for (const skinType of skinTypes) {
+        const key = `${fitzType}-${skinType}`;
+        if (database[key]) {
+          database[key].push(product);
+        }
+      }
     }
 
-    // Add product to the appropriate skin type group
-    database[key].push(product);
+    console.log(`Row ${rowIndex + 2}: ${name} -> Fitz ${fitzpatrickTypes.join(',')} / Skin ${skinTypes.join(',')}`);
   } catch (error) {
     console.warn(`Warning: Error processing row ${rowIndex + 2}: ${error.message}`);
   }
@@ -103,5 +159,17 @@ rows.forEach((row, rowIndex) => {
 // Write the transformed data
 fs.writeFileSync(outputFile, JSON.stringify(database, null, 2));
 
-console.log(`Successfully transformed ${rows.length} rows into ${Object.keys(database).length} skin type groups`);
-console.log(`Output written to: ${outputFile}`);
+// Count total products
+let totalProducts = 0;
+let groupsWithProducts = 0;
+for (const key in database) {
+  if (database[key].length > 0) {
+    groupsWithProducts++;
+    totalProducts += database[key].length;
+  }
+}
+
+console.log(`\n✅ Successfully transformed ${rows.length} rows`);
+console.log(`📊 Total product entries: ${totalProducts}`);
+console.log(`🎯 Skin type groups with products: ${groupsWithProducts}/30`);
+console.log(`📁 Output written to: ${outputFile}`);
