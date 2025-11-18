@@ -31,7 +31,7 @@ jobs:
           GOOGLE_SHEETS_ID: ${{ secrets.VITE_GOOGLE_SHEETS_ID }}
         run: |
           # Fetch the data from Google Sheets API
-          SHEET_URL="https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_ID}/values/Sheet1?key=${GOOGLE_SHEETS_API_KEY}"
+          SHEET_URL="https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_ID}/values/Sunscreen?key=${GOOGLE_SHEETS_API_KEY}"
 
           echo "Fetching data from Google Sheets..."
           echo "Sheet ID: ${GOOGLE_SHEETS_ID}"
