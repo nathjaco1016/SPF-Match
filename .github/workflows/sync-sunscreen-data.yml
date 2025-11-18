@@ -1,0 +1,68 @@
+name: Sync Sunscreen Data from Google Sheets
+
+on:
+  # Triggered by repository_dispatch event from Google Apps Script
+  repository_dispatch:
+    types: [sync-sunscreen-data]
+
+  # Manual trigger for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch data from Google Sheets
+        env:
+          GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
+          GOOGLE_SHEETS_ID: ${{ secrets.VITE_GOOGLE_SHEETS_ID }}
+        run: |
+          # Fetch the data from Google Sheets API
+          SHEET_URL="https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_ID}/values/Sheet1?key=${GOOGLE_SHEETS_API_KEY}"
+
+          # Download the data
+          curl -s "${SHEET_URL}" > /tmp/sheets_response.json
+
+          # Create data directory if it doesn't exist
+          mkdir -p public/data
+
+          # Transform the data using Node.js
+          node .github/scripts/transform-sunscreen-data.js /tmp/sheets_response.json public/data/sunscreen-database.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/sunscreen-database.json
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update sunscreen database from Google Sheets"
+            git push
+          fi
+
+      - name: Trigger deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            });

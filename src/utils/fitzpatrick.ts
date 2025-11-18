@@ -1,21 +1,21 @@
-import type { QuestionnaireAnswers, FitzpatrickType } from "../types/questionnaire";
+import type { QuizAnswers, FitzpatrickType } from "../types/quiz";
 import type { SkinType } from "../types/sunscreen";
-import { QUESTIONNAIRE_QUESTIONS } from "../constants/questionnaire";
+import { QUIZ_QUESTIONS } from "../constants/quiz";
 import { FITZPATRICK_THRESHOLDS } from "../constants/config";
 
 /**
- * Calculate Fitzpatrick skin type based on questionnaire answers
- * @param answers User's questionnaire responses
+ * Calculate Fitzpatrick skin type based on quiz answers
+ * @param answers User's quiz responses
  * @returns Fitzpatrick type (1-6)
  */
 export function calculateFitzpatrickType(
-  answers: QuestionnaireAnswers
+  answers: QuizAnswers
 ): FitzpatrickType {
   let totalScore = 0;
 
   // Calculate score from first 10 questions (exclude skinType question)
-  for (let i = 0; i < QUESTIONNAIRE_QUESTIONS.length - 1; i++) {
-    const question = QUESTIONNAIRE_QUESTIONS[i];
+  for (let i = 0; i < QUIZ_QUESTIONS.length - 1; i++) {
+    const question = QUIZ_QUESTIONS[i];
     const answer = answers[question.id];
 
     if (answer && question.scores) {
@@ -36,12 +36,12 @@ export function calculateFitzpatrickType(
 }
 
 /**
- * Extract skin type from questionnaire answers
- * @param answers User's questionnaire responses
+ * Extract skin type from quiz answers
+ * @param answers User's quiz responses
  * @returns Skin type (normal, oily, dry, combination, sensitive)
  */
-export function getSkinType(answers: QuestionnaireAnswers): SkinType {
-  const skinTypeQuestion = QUESTIONNAIRE_QUESTIONS.find(
+export function getSkinType(answers: QuizAnswers): SkinType {
+  const skinTypeQuestion = QUIZ_QUESTIONS.find(
     (q) => q.id === "skinType"
   );
 

@@ -1,4 +1,4 @@
-import type { FitzpatrickType } from "../types/questionnaire";
+import type { FitzpatrickType } from "../types/quiz";
 import type { SkinType } from "../types/sunscreen";
 
 export const FITZPATRICK_INFO: Record<FitzpatrickType, { name: string; description: string }> = {

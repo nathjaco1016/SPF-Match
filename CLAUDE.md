@@ -4,12 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SPFMatch is a React-based web application that helps users find personalized sunscreen recommendations based on their Fitzpatrick skin type and facial skin characteristics. The app features:
+SPFMatch is a React-based web application that helps users determine their Fitzpatrick skin type and facial skin characteristics. The app features:
 
-- **Skin Type Questionnaire**: 11-question assessment determining Fitzpatrick type (I-VI) and facial skin type (normal, oily, dry, combination, sensitive)
-- **Personalized Recommendations**: Sunscreen database with 30 products matched to specific skin type combinations
+- **Skin Type Quiz**: 11-question assessment determining Fitzpatrick type (I-VI) and facial skin type (normal, oily, dry, combination, sensitive)
 - **UV-Based Reminders**: Location-aware reapplication timer using real-time UV index data
-- **Educational Resources**: Curated links to authoritative sunscreen and sun protection information
 
 ## Development Commands
 
@@ -42,15 +40,15 @@ npm run lint
 
 The application uses React's built-in state management with a single top-level `App.tsx` component managing all application state:
 
-- `currentPage`: Navigation state (home, questionnaire, results, blogs, reminder)
-- `questionnaireAnswers`: User responses to questionnaire
-- `fitzpatrickType`: Calculated Fitzpatrick type (1-6) from questionnaire score
+- `currentPage`: Navigation state (home, quiz, results, resources, reminder)
+- `quizAnswers`: User responses to quiz
+- `fitzpatrickType`: Calculated Fitzpatrick type (1-6) from quiz score
 
 State flows down through props; actions flow up through callbacks (`onNavigate`, `onSubmit`, `onRestart`).
 
 ### Fitzpatrick Type Calculation
 
-The questionnaire uses a scoring system:
+The quiz uses a scoring system:
 - First 10 questions score 0-4 points per answer (total 0-40 points)
 - Total score maps to Fitzpatrick types:
   - 0-7: Type I
@@ -60,16 +58,7 @@ The questionnaire uses a scoring system:
   - 31-34: Type V
   - 35+: Type VI
 
-**Important**: The calculation logic exists in TWO places and must be kept in sync:
-- [App.tsx:32-73](src/App.tsx#L32-L73) - Used when navigating from questionnaire
-- [ResultsPage.tsx:135-155](src/components/ResultsPage.tsx#L135-L155) - Used when rendering results
-
-### Sunscreen Database Structure
-
-The `sunscreenDatabase` in [ResultsPage.tsx:214](src/components/ResultsPage.tsx#L214) uses keys in the format `"{fitzpatrickType}-{skinType}"` (e.g., "3-oily", "5-sensitive"). Each recommendation includes:
-- `name`, `filterType` (Mineral/Chemical), `spf`, `vehicle` (Lotion/Gel/Cream/etc.)
-- `tint`, `price`, `size`, `description`
-- `imageQuery` (currently unused - all display same placeholder)
+**Important**: The calculation logic is centralized in [utils/fitzpatrick.ts](src/utils/fitzpatrick.ts) and imported where needed.
 
 ### UV Reminder System
 
@@ -83,23 +72,23 @@ The `sunscreenDatabase` in [ResultsPage.tsx:214](src/components/ResultsPage.tsx#
 
 ### Component Organization
 
-- `/src/components/` - Page-level components (HomePage, QuestionnairePage, ResultsPage, BlogsPage, ReminderPage, Navigation)
+- `/src/components/` - Page-level components (HomePage, QuizPage, ResultsPage, ResourcesPage, ReminderPage, Navigation)
+- `/src/constants/` - Quiz questions, skin type info, and configuration constants
+- `/src/types/` - TypeScript type definitions (quiz, sunscreen, etc.)
+- `/src/utils/` - Utility functions (Fitzpatrick calculation, etc.)
 - `/src/assets/` - Reusable UI components (button, card, badge, alert, radio-group, label) and utilities
 - All components use Tailwind CSS classes with shadcn/ui-style design tokens
 
-### Questionnaire Questions
+### Quiz Questions
 
-The questionnaire structure is duplicated across components. When modifying questions, update all three locations:
-1. [QuestionnairePage.tsx:11-148](src/components/QuestionnairePage.tsx#L11-L148) - UI rendering
-2. [ResultsPage.tsx:11-133](src/components/ResultsPage.tsx#L11-L133) - Scoring calculation
-3. [App.tsx:32-56](src/components/App.tsx#L32-L56) - Navigation calculation
-
-The 11th question (skinType) uses `types` array instead of `scores` to map answers to skin type categories.
+The quiz questions are centralized in [constants/quiz.ts](src/constants/quiz.ts):
+- First 10 questions use `scores` array (0-4 points) for Fitzpatrick calculation
+- The 11th question (skinType) uses `types` array instead of `scores` to map answers to skin type categories (normal, oily, dry, combination, sensitive)
 
 ## Key Patterns
 
 ### Navigation
-Navigation is prop-drilled from `App.tsx`. Always call `onNavigate` with page strings: "home", "questionnaire", "results", "blogs", "reminder".
+Navigation is prop-drilled from `App.tsx`. Always call `onNavigate` with page strings: "home", "quiz", "results", "resources", "reminder".
 
 ### Image Fallback
 Use `ImageWithFallback` component for images that may fail to load - it shows a placeholder on error.
@@ -115,12 +104,10 @@ All components use TypeScript with explicit prop interfaces. Maintain type safet
 ## External APIs
 
 - **Open-Meteo**: No API key required, free UV index data
-- **Unsplash**: Used for placeholder images (no API integration - direct URLs)
 
 ## Known Limitations
 
-- No backend/database - all data is hardcoded in components
-- Sunscreen recommendations are static (30 products total)
+- No backend/database
 - UV data requires browser geolocation permission
 - Timer resets on page navigation (no persistence)
 - No user accounts or saved preferences

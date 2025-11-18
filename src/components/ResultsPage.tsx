@@ -4,15 +4,8 @@ import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Badge } from "../assets/badge";
 import { Alert, AlertTitle, AlertDescription } from "../assets/alert";
-import { ImageWithFallback } from "./ImageWithFallback";
 import { calculateFitzpatrickType, getSkinType } from "./QuizPage";
 import { FITZPATRICK_INFO, SKIN_TYPE_INFO } from "../constants/skinTypeInfo";
-import { SUNSCREEN_DATABASE } from "../constants/sunscreenDatabase";
-import {
-  fetchSunscreenData,
-  groupProductsByType,
-  filterByPreferences,
-} from "../services/googleSheetsService";
 import type { SunscreenProduct } from "../types/sunscreen";
 
 interface ResultsPageProps {
@@ -44,22 +37,24 @@ export function ResultsPage({
     vehicle: Array.isArray(answers.vehicle) ? answers.vehicle : [],
   };
 
-  // Fetch sunscreen data from Google Sheets
+  // Fetch sunscreen data from static JSON file
   useEffect(() => {
     async function loadData() {
       try {
         setIsLoading(true);
         setError(null);
-        const products = await fetchSunscreenData();
-        const grouped = groupProductsByType(products);
-        setSunscreenDatabase(grouped);
+
+        const response = await fetch('/data/sunscreen-database.json');
+        if (!response.ok) {
+          throw new Error('Failed to load sunscreen data');
+        }
+
+        const data = await response.json();
+        setSunscreenDatabase(data);
       } catch (err) {
         console.error("Failed to load sunscreen data:", err);
-        setError(
-          "Failed to load sunscreen recommendations. Using default data."
-        );
-        // Fallback to hardcoded database
-        setSunscreenDatabase(SUNSCREEN_DATABASE);
+        setError("Failed to load sunscreen recommendations.");
+        setSunscreenDatabase({});
       } finally {
         setIsLoading(false);
       }
@@ -69,14 +64,26 @@ export function ResultsPage({
   }, []);
 
   // Get base recommendations for skin type
-  const baseRecommendations =
-    sunscreenDatabase[skinTypeKey] ||
-    sunscreenDatabase["3-normal"] ||
-    SUNSCREEN_DATABASE[skinTypeKey] ||
-    SUNSCREEN_DATABASE["3-normal"] ||
-    [];
+  const baseRecommendations = sunscreenDatabase[skinTypeKey] || [];
 
   // Apply preference filtering
+  const filterByPreferences = (
+    products: SunscreenProduct[],
+    prefs: { filterType: string[]; tint: string[]; vehicle: string[] }
+  ): SunscreenProduct[] => {
+    if (prefs.filterType.length === 0 && prefs.tint.length === 0 && prefs.vehicle.length === 0) {
+      return products;
+    }
+
+    return products.filter((product) => {
+      const matchesFilterType = prefs.filterType.length === 0 || prefs.filterType.includes(product.filterType);
+      const matchesTint = prefs.tint.length === 0 || prefs.tint.includes(product.tint);
+      const matchesVehicle = prefs.vehicle.length === 0 || prefs.vehicle.includes(product.vehicle);
+
+      return matchesFilterType && matchesTint && matchesVehicle;
+    });
+  };
+
   const recommendations = filterByPreferences(baseRecommendations, preferences);
 
   // Show loading state
@@ -138,133 +145,132 @@ export function ResultsPage({
         </Card>
       </div>
 
-      <h2 className="mb-6">Recommended Sunscreens</h2>
+      {baseRecommendations.length > 0 && (
+        <>
+          <h2 className="mb-6">Recommended Sunscreens</h2>
 
-      {recommendations.length === 0 ? (
-        <Alert className="mb-8">
-          <AlertTitle>No matches found</AlertTitle>
-          <AlertDescription>
-            We couldn't find any sunscreens matching your exact preferences. Try adjusting your filter, tint, or vehicle preferences in the quiz.
-          </AlertDescription>
-        </Alert>
-      ) : (
-        <div className="grid gap-6 mb-8">
-          {recommendations.map((sunscreen, index) => (
-            <Card key={index}>
-              <CardContent className="pt-6">
-                <div className="grid md:grid-cols-[200px_1fr] gap-6">
-                  <div className="bg-muted rounded-lg overflow-hidden">
-                    <ImageWithFallback
-                      src={`https://images.unsplash.com/photo-1556228841-a6b5e0e56f95?w=400&h=400&fit=crop`}
-                      alt={sunscreen.name}
-                      className="w-full h-[200px] object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="mb-3">{sunscreen.name}</h3>
-                    <p className="text-muted-foreground mb-4">
-                      {sunscreen.description}
-                    </p>
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <div>
-                        <span className="text-muted-foreground">
-                          Filter Type:
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className="ml-2"
-                        >
-                          {sunscreen.filterType}
-                        </Badge>
+          {recommendations.length === 0 ? (
+            <Alert className="mb-8">
+              <AlertTitle>No matches found</AlertTitle>
+              <AlertDescription>
+                We couldn't find any sunscreens matching your exact preferences. Try adjusting your filter, tint, or vehicle preferences in the quiz.
+              </AlertDescription>
+            </Alert>
+          ) : (
+            <div className="grid gap-6 mb-8">
+              {recommendations.map((sunscreen, index) => (
+                <Card key={index}>
+                  <CardContent className="pt-6">
+                    <div className="grid md:grid-cols-[200px_1fr] gap-6">
+                      <div className="bg-muted rounded-lg overflow-hidden h-[200px] flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Product Image</span>
                       </div>
                       <div>
-                        <span className="text-muted-foreground">
-                          SPF:
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className="ml-2"
-                        >
-                          {sunscreen.spf}
-                        </Badge>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">
-                          Vehicle:
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className="ml-2"
-                        >
-                          {sunscreen.vehicle}
-                        </Badge>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">
-                          Tint:
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className="ml-2"
-                        >
-                          {sunscreen.tint}
-                        </Badge>
+                        <h3 className="mb-3">{sunscreen.name}</h3>
+                        <p className="text-muted-foreground mb-4">
+                          {sunscreen.description}
+                        </p>
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                          <div>
+                            <span className="text-muted-foreground">
+                              Filter Type:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              {sunscreen.filterType}
+                            </Badge>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">
+                              SPF:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              {sunscreen.spf}
+                            </Badge>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">
+                              Vehicle:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              {sunscreen.vehicle}
+                            </Badge>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">
+                              Tint:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              {sunscreen.tint}
+                            </Badge>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-6 flex-wrap">
+                          <div>
+                            <span className="text-muted-foreground">
+                              Price:
+                            </span>
+                            <span className="ml-2">
+                              ${sunscreen.price.toFixed(2)}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">
+                              Size:
+                            </span>
+                            <span className="ml-2">
+                              {sunscreen.size} fl oz
+                            </span>
+                          </div>
+                          {sunscreen.unitPrice && (
+                            <div>
+                              <span className="text-muted-foreground">
+                                Unit Price:
+                              </span>
+                              <span className="ml-2">
+                                ${sunscreen.unitPrice.toFixed(2)}/fl oz
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        {sunscreen.link && (
+                          <div className="mt-4">
+                            <Button
+                              asChild
+                              variant="default"
+                              size="sm"
+                            >
+                              <a
+                                href={sunscreen.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                View Product
+                              </a>
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="flex items-center gap-6 flex-wrap">
-                      <div>
-                        <span className="text-muted-foreground">
-                          Price:
-                        </span>
-                        <span className="ml-2">
-                          ${sunscreen.price.toFixed(2)}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">
-                          Size:
-                        </span>
-                        <span className="ml-2">
-                          {sunscreen.size} fl oz
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">
-                          Unit Price:
-                        </span>
-                        <span className="ml-2">
-                          $
-                          {sunscreen.unitPrice
-                            ? sunscreen.unitPrice.toFixed(2)
-                            : (sunscreen.price / sunscreen.size).toFixed(2)}
-                          /fl oz
-                        </span>
-                      </div>
-                    </div>
-                    {sunscreen.link && (
-                      <div className="mt-4">
-                        <Button
-                          asChild
-                          variant="default"
-                          size="sm"
-                        >
-                          <a
-                            href={sunscreen.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View Product
-                          </a>
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </>
       )}
+
       <div className="flex flex-col sm:flex-row justify-center gap-4">
         <Button size="lg" onClick={onRestart}>
           Restart Quiz

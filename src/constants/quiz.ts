@@ -1,6 +1,6 @@
-import type { QuestionnaireQuestion } from "../types/questionnaire";
+import type { QuizQuestion } from "../types/quiz";
 
-export const QUESTIONNAIRE_QUESTIONS: QuestionnaireQuestion[] = [
+export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: "eyeColor",
     question: "What color are your eyes?",
