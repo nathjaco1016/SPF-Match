@@ -19,10 +19,26 @@ if (!inputFile || !outputFile) {
 }
 
 // Read the Google Sheets API response
-const sheetsResponse = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+let sheetsResponse;
+try {
+  sheetsResponse = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+} catch (error) {
+  console.error('Error parsing sheets response:', error.message);
+  console.error('File contents:');
+  console.error(fs.readFileSync(inputFile, 'utf8'));
+  process.exit(1);
+}
 
 if (!sheetsResponse.values || sheetsResponse.values.length === 0) {
   console.error('No data found in sheets response');
+  console.error('This likely means your Google Sheet is empty or the API call failed.');
+  console.error('Please check:');
+  console.error('1. Your Google Sheet has data with proper headers in Row 1');
+  console.error('2. The sheet is named "Sheet1" or update the workflow');
+  console.error('3. The Google Sheets API is enabled');
+  console.error('4. The API key and Sheet ID are correct in GitHub Secrets');
+  console.error('\nReceived response:');
+  console.error(JSON.stringify(sheetsResponse, null, 2));
   process.exit(1);
 }
 
