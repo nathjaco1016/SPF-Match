@@ -30,11 +30,32 @@ export function ResultsPage({
   const fitzpatrickData = FITZPATRICK_INFO[fitzpatrickType as keyof typeof FITZPATRICK_INFO];
   const skinTypeDescription = SKIN_TYPE_INFO[skinType as keyof typeof SKIN_TYPE_INFO];
 
-  // Extract user preferences from answers
+  // Extract user preferences from answers and normalize values
+  const normalizePreferences = (values: string | string[], type: 'filterType' | 'tint' | 'vehicle'): string[] => {
+    const arr = Array.isArray(values) ? values : [];
+
+    // Filter out "Anything is fine" - it means no preference
+    const filtered = arr.filter(v => v !== 'Anything is fine');
+
+    // If empty after filtering, return empty array (no filter)
+    if (filtered.length === 0) return [];
+
+    // Map quiz options to database values
+    if (type === 'tint') {
+      return filtered.map(v => {
+        if (v === 'Skin-colored') return 'Tinted';
+        if (v === 'Transparent' || v === 'No tint') return 'Untinted';
+        return v;
+      });
+    }
+
+    return filtered;
+  };
+
   const preferences = {
-    filterType: Array.isArray(answers.filterType) ? answers.filterType : [],
-    tint: Array.isArray(answers.tint) ? answers.tint : [],
-    vehicle: Array.isArray(answers.vehicle) ? answers.vehicle : [],
+    filterType: normalizePreferences(answers.filterType || [], 'filterType'),
+    tint: normalizePreferences(answers.tint || [], 'tint'),
+    vehicle: normalizePreferences(answers.vehicle || [], 'vehicle'),
   };
 
   // Fetch sunscreen data from static JSON file
@@ -44,7 +65,9 @@ export function ResultsPage({
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(`${import.meta.env.BASE_URL || '/'}data/sunscreen-database.json`);
+        // Use base path for GitHub Pages deployment
+        const basePath = import.meta.env.MODE === 'production' ? '/SPF-Match/' : '/';
+        const response = await fetch(`${basePath}data/sunscreen-database.json`);
         if (!response.ok) {
           throw new Error('Failed to load sunscreen data');
         }
