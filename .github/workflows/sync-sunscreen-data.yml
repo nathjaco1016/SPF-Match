@@ -70,15 +70,5 @@ jobs:
           else
             git commit -m "Update sunscreen database from Google Sheets"
             git push
+            echo "✅ Data updated and pushed. Deployment will trigger automatically."
           fi
-
-      - name: Trigger deployment
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'deploy.yml',
-              ref: 'main'
-            });
