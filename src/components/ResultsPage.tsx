@@ -68,10 +68,13 @@ export function ResultsPage({
         // Use base path for GitHub Pages deployment
         // Check if we're on the production domain
         const basePath = window.location.hostname === 'nathjaco1016.github.io' ? '/SPF-Match/' : '/';
-        const response = await fetch(`${basePath}data/sunscreen-database.json`, {
+        // Add timestamp to bust cache at URL level
+        const timestamp = Date.now();
+        const response = await fetch(`${basePath}data/sunscreen-database.json?t=${timestamp}`, {
           cache: 'no-cache',
           headers: {
             'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
           },
         });
         if (!response.ok) {
