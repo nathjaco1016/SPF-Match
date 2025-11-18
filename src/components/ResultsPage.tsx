@@ -44,7 +44,7 @@ export function ResultsPage({
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch('/data/sunscreen-database.json');
+        const response = await fetch(`${import.meta.env.BASE_URL || '/'}data/sunscreen-database.json`);
         if (!response.ok) {
           throw new Error('Failed to load sunscreen data');
         }
