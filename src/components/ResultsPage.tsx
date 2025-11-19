@@ -195,14 +195,60 @@ export function ResultsPage({
                   <CardContent className="pt-6">
                     <div className="grid md:grid-cols-[200px_1fr] gap-6">
                       <div className="bg-muted rounded-lg overflow-hidden h-[200px] flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Product Image</span>
+                        {sunscreen.image ? (
+                          <img
+                            src={sunscreen.image}
+                            alt={sunscreen.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-muted-foreground text-sm">Product Image</span>
+                        )}
                       </div>
                       <div>
                         <h3 className="mb-3">{sunscreen.name}</h3>
-                        <p className="text-muted-foreground mb-4">
-                          {sunscreen.description}
-                        </p>
+
+                        {sunscreen.link && (
+                          <div className="mb-4">
+                            <Button
+                              asChild
+                              variant="default"
+                              size="sm"
+                            >
+                              <a
+                                href={sunscreen.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Purchase
+                              </a>
+                            </Button>
+                          </div>
+                        )}
+
                         <div className="grid grid-cols-2 gap-3 mb-4">
+                          <div>
+                            <span className="text-muted-foreground">
+                              Fitzpatrick Type:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              Type {fitzpatrickType}
+                            </Badge>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">
+                              Skin Type:
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="ml-2"
+                            >
+                              {skinType.charAt(0).toUpperCase() + skinType.slice(1)}
+                            </Badge>
+                          </div>
                           <div>
                             <span className="text-muted-foreground">
                               Filter Type:
@@ -276,23 +322,6 @@ export function ResultsPage({
                             </div>
                           )}
                         </div>
-                        {sunscreen.link && (
-                          <div className="mt-4">
-                            <Button
-                              asChild
-                              variant="default"
-                              size="sm"
-                            >
-                              <a
-                                href={sunscreen.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                View Product
-                              </a>
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </CardContent>
