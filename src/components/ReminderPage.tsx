@@ -166,7 +166,7 @@ export function ReminderPage({
         </p>
       </div>
 
-      <Alert className="mb-8">
+      <Alert variant="destructive" className="mb-8">
         <AlertCircle className="h-4 w-4" />
         <AlertDescription>
           <strong>Important:</strong> Remember to reapply
@@ -176,6 +176,58 @@ export function ReminderPage({
           least 15 minutes before sun exposure.
         </AlertDescription>
       </Alert>
+
+      <Card className="mb-8">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Clock className="w-5 h-5" />
+            <h3>Reapplication Timer</h3>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {timeRemaining !== null ? (
+            <div className="text-center">
+              <div className="mb-4">
+                {timeRemaining === 0 ? (
+                  <p className="text-red-600">
+                    Time to reapply sunscreen!
+                  </p>
+                ) : (
+                  <p className="text-muted-foreground mb-2">
+                    Time until reapplication:
+                  </p>
+                )}
+              </div>
+              <div className="mb-6">
+                {formatTime(timeRemaining)}
+              </div>
+              <Button onClick={restartTimer}>
+                Restart Timer
+              </Button>
+            </div>
+          ) : (
+            <div className="text-center">
+              <p className="text-muted-foreground mb-4">
+                {uvIndex !== null
+                  ? uvIndex <= 1
+                    ? "The UV index is currently very low. Check back later as UV levels typically increase throughout the day."
+                    : `Recommended reapplication: every ${calculateReapplicationTime(
+                        uvIndex,
+                        fitzpatrickType,
+                      )} minutes`
+                  : "Get your location to calculate recommended reapplication time"}
+              </p>
+              <Button onClick={startTimer} disabled={uvIndex !== null && uvIndex <= 1}>
+                {uvIndex !== null
+                  ? uvIndex <= 1
+                    ? "No Timer Needed Right Now"
+                    : "Start Timer"
+                  : "Get Location & Start Timer"}
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <Card>
@@ -237,58 +289,6 @@ export function ReminderPage({
           </CardContent>
         </Card>
       </div>
-
-      <Card className="mb-8">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5" />
-            <h3>Reapplication Timer</h3>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {timeRemaining !== null ? (
-            <div className="text-center">
-              <div className="mb-4">
-                {timeRemaining === 0 ? (
-                  <p className="text-red-600">
-                    Time to reapply sunscreen!
-                  </p>
-                ) : (
-                  <p className="text-muted-foreground mb-2">
-                    Time until reapplication:
-                  </p>
-                )}
-              </div>
-              <div className="mb-6">
-                {formatTime(timeRemaining)}
-              </div>
-              <Button onClick={restartTimer}>
-                Restart Timer
-              </Button>
-            </div>
-          ) : (
-            <div className="text-center">
-              <p className="text-muted-foreground mb-4">
-                {uvIndex !== null
-                  ? uvIndex <= 1
-                    ? "The UV index is currently very low. Check back later as UV levels typically increase throughout the day."
-                    : `Recommended reapplication: every ${calculateReapplicationTime(
-                        uvIndex,
-                        fitzpatrickType,
-                      )} minutes`
-                  : "Get your location to calculate recommended reapplication time"}
-              </p>
-              <Button onClick={startTimer} disabled={uvIndex !== null && uvIndex <= 1}>
-                {uvIndex !== null
-                  ? uvIndex <= 1
-                    ? "No Timer Needed Right Now"
-                    : "Start Timer"
-                  : "Get Location & Start Timer"}
-              </Button>
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
       <Card>
         <CardHeader>
