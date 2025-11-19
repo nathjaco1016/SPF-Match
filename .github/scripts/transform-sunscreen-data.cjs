@@ -118,6 +118,7 @@ rows.forEach((row, rowIndex) => {
     const priceStr = row[headerIndex['Price']] || '';
     const sizeStr = row[headerIndex['Size(oz)']] || '';
     const link = row[headerIndex['Link']] || '';
+    const image = row[headerIndex['Image']] || '';
 
     // Parse price (remove $ sign)
     const price = parseFloat(priceStr.replace('$', '')) || 0;
@@ -135,6 +136,11 @@ rows.forEach((row, rowIndex) => {
       link,
       unitPrice: size > 0 ? price / size : 0
     };
+
+    // Add image if it exists
+    if (image) {
+      product.image = image;
+    }
 
     // Parse Fitzpatrick types and skin types
     const fitzpatrickTypes = parseFitzpatrickScale(fitzpatrickScale);

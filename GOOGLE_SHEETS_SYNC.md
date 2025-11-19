@@ -44,25 +44,25 @@ This document explains how to set up automatic syncing of sunscreen data from Go
 
 Your Google Sheets document should have the following columns in **Row 1** (headers):
 
-| name | filterType | spf | vehicle | tint | price | size | description | fitzpatrickType | skinType | link |
-|------|------------|-----|---------|------|-------|------|-------------|-----------------|----------|------|
+| Sunscreen_Name | Fitzpatrick_Scale | Skin_Type | Filter_Type | SPF | Vehicle | Tint | Price | Size(oz) | Link | Image |
+|----------------|-------------------|-----------|-------------|-----|---------|------|-------|----------|------|-------|
 
 **Column Descriptions:**
-- `name` - Product name (e.g., "CeraVe Hydrating Mineral Sunscreen SPF 50")
-- `filterType` - "Mineral" or "Chemical"
-- `spf` - SPF number (e.g., 30, 50)
-- `vehicle` - "Lotion", "Gel", "Cream", "Stick", etc.
-- `tint` - "Tinted" or "Untinted"
-- `price` - Price in USD (e.g., 15.99)
-- `size` - Size in fl oz (e.g., 1.7)
-- `description` - Product description
-- `fitzpatrickType` - Fitzpatrick skin type number (1-6)
-- `skinType` - "normal", "oily", "dry", "combination", or "sensitive"
-- `link` - (Optional) Product purchase URL
+- `Sunscreen_Name` - Product name (e.g., "CeraVe Hydrating Mineral Sunscreen SPF 50")
+- `Fitzpatrick_Scale` - Fitzpatrick type range using Roman numerals (e.g., "I–III", "V–VI", or "II")
+- `Skin_Type` - Comma-separated skin types: "Normal", "Oily", "Dry", "Combination", "Sensitive" (e.g., "Oily, Combination")
+- `Filter_Type` - "Physical", "Chemical", or "Mixture"
+- `SPF` - SPF number (e.g., 30, 50)
+- `Vehicle` - "Cream/lotion", "Spray", "Powder", "Stick", etc.
+- `Tint` - "Yes", "No", "Tinted", or "Untinted"
+- `Price` - Price in USD with or without $ sign (e.g., "$15.99" or "15.99")
+- `Size(oz)` - Size in fl oz (e.g., 1.7)
+- `Link` - (Optional) Product purchase URL
+- `Image` - (Optional) Product image URL
 
 **Example Row:**
 ```
-CeraVe Hydrating Mineral Sunscreen SPF 50 | Mineral | 50 | Lotion | Tinted | 15.99 | 1.7 | Gentle mineral sunscreen with ceramides | 2 | dry | https://example.com/product
+CeraVe Hydrating Mineral Sunscreen SPF 50 | II | Dry, Normal | Physical | 50 | Cream/lotion | Tinted | $15.99 | 1.7 | https://example.com/product | https://example.com/product-image.jpg
 ```
 
 ### 3. Google Apps Script Setup
