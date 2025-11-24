@@ -124,6 +124,10 @@ rows.forEach((row, rowIndex) => {
     const price = parseFloat(priceStr.replace('$', '')) || 0;
     const size = parseFloat(sizeStr) || 0;
 
+    // Parse Fitzpatrick types and skin types
+    const fitzpatrickTypes = parseFitzpatrickScale(fitzpatrickScale);
+    const skinTypes = parseSkinTypes(skinTypeStr);
+
     const product = {
       name,
       filterType,
@@ -134,17 +138,15 @@ rows.forEach((row, rowIndex) => {
       size,
       description: `SPF ${spf} ${filterType} sunscreen`,
       link,
-      unitPrice: size > 0 ? price / size : 0
+      unitPrice: size > 0 ? price / size : 0,
+      fitzpatrickScale: fitzpatrickScale.trim(), // Store the original range (e.g., "IV-V")
+      skinTypes: skinTypes // Store the array of skin types
     };
 
     // Add image if it exists
     if (image) {
       product.image = image;
     }
-
-    // Parse Fitzpatrick types and skin types
-    const fitzpatrickTypes = parseFitzpatrickScale(fitzpatrickScale);
-    const skinTypes = parseSkinTypes(skinTypeStr);
 
     // Add product to all matching combinations
     for (const fitzType of fitzpatrickTypes) {

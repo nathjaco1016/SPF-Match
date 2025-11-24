@@ -65,12 +65,10 @@ export function ResultsPage({
         setIsLoading(true);
         setError(null);
 
-        // Use base path for GitHub Pages deployment
-        // Check if we're on the production domain
-        const basePath = window.location.hostname === 'nathjaco1016.github.io' ? '/SPF-Match/' : '/';
+        // Use base path - in dev and prod, Vite sets this correctly
         // Add timestamp to bust cache at URL level
         const timestamp = Date.now();
-        const response = await fetch(`${basePath}data/sunscreen-database.json?t=${timestamp}`, {
+        const response = await fetch(`/SPF-Match/data/sunscreen-database.json?t=${timestamp}`, {
           cache: 'no-cache',
           headers: {
             'Cache-Control': 'no-cache',
@@ -235,19 +233,31 @@ export function ResultsPage({
                               variant="secondary"
                               className="ml-2"
                             >
-                              Type {fitzpatrickType}
+                              {(sunscreen.fitzpatrickScale && sunscreen.fitzpatrickScale.trim()) || `Type ${fitzpatrickType}`}
                             </Badge>
                           </div>
                           <div>
                             <span className="text-muted-foreground">
                               Skin Type:
                             </span>
-                            <Badge
-                              variant="secondary"
-                              className="ml-2"
-                            >
-                              {skinType.charAt(0).toUpperCase() + skinType.slice(1)}
-                            </Badge>
+                            {(sunscreen.skinTypes?.length ?? 0) > 0 ? (
+                              sunscreen.skinTypes!.map((type, idx) => (
+                                <Badge
+                                  key={idx}
+                                  variant="secondary"
+                                  className="ml-2"
+                                >
+                                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                                </Badge>
+                              ))
+                            ) : (
+                              <Badge
+                                variant="secondary"
+                                className="ml-2"
+                              >
+                                {skinType.charAt(0).toUpperCase() + skinType.slice(1)}
+                              </Badge>
+                            )}
                           </div>
                           <div>
                             <span className="text-muted-foreground">

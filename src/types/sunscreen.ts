@@ -10,8 +10,8 @@ export interface SunscreenProduct {
   link?: string;
   image?: string;
   unitPrice?: number;
-  fitzpatrickScale?: string;
-  skinTypes?: string[];
+  fitzpatrickScale?: string; // e.g., "IV-V", "I-III", "II"
+  skinTypes?: string[]; // e.g., ["oily", "combination"]
 }
 
 export type SkinType = "normal" | "oily" | "dry" | "combination" | "sensitive";
