@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import { HomePage } from "./components/HomePage";
 import { QuizPage, calculateFitzpatrickType } from "./components/QuizPage";
@@ -6,34 +7,34 @@ import { ResultsPage } from "./components/ResultsPage";
 import { ResourcesPage } from "./components/ResourcesPage";
 import { ReminderPage } from "./components/ReminderPage";
 
-type Page = "home" | "quiz" | "results" | "resources" | "reminder";
-
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>("home");
+function AppContent() {
+  const navigate = useNavigate();
+  const routerLocation = useLocation();
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string | string[]> | null>(null);
   const [fitzpatrickType, setFitzpatrickType] = useState<number | undefined>(undefined);
 
-  // Update page title based on current page
+  // Update page title based on current route
   useEffect(() => {
-    const pageTitles: Record<Page, string> = {
-      home: "Home",
-      quiz: "Quiz",
-      results: "Results",
-      resources: "Resources",
-      reminder: "Reminder"
+    const pathToTitle: Record<string, string> = {
+      "/": "Home",
+      "/quiz": "Quiz",
+      "/results": "Results",
+      "/resources": "Resources",
+      "/reminder": "Reminder"
     };
-    document.title = `${pageTitles[currentPage]} | SPFMatch`;
-  }, [currentPage]);
+    const title = pathToTitle[routerLocation.pathname] || "Home";
+    document.title = `${title} | SPFMatch`;
+  }, [routerLocation.pathname]);
 
   // Timer state lifted to App level for persistence
-  const [location, setLocation] = useState<{
+  const [geoLocation, setGeoLocation] = useState<{
     lat: number;
     lon: number;
   } | null>(null);
   const [uvIndex, setUvIndex] = useState<number | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
   const [isActive, setIsActive] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Timer effect that runs at App level
   useEffect(() => {
@@ -77,9 +78,9 @@ export default function App() {
 
     // If navigating to quiz but answers exist, go to results instead
     if (page === "quiz" && quizAnswers) {
-      setCurrentPage("results");
+      navigate("/results");
     } else {
-      setCurrentPage(page as Page);
+      navigate(`/${page === "home" ? "" : page}`);
     }
   };
 
@@ -90,52 +91,64 @@ export default function App() {
     const calculatedType = calculateFitzpatrickType(answers);
     setFitzpatrickType(calculatedType);
     window.scrollTo(0, 0);
-    setCurrentPage("results");
+    navigate("/results");
   };
 
   const handleRestartQuiz = () => {
     window.scrollTo(0, 0);
     setQuizAnswers(null);
-    setCurrentPage("quiz");
+    navigate("/quiz");
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation
-        currentPage={currentPage}
+        currentPage={routerLocation.pathname === "/" ? "home" : routerLocation.pathname.substring(1)}
         onNavigate={handleNavigate}
         isTimerActive={isActive}
         timeRemaining={timeRemaining}
       />
 
-      {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
-
-      {currentPage === "quiz" && (
-        <QuizPage onSubmit={handleQuizSubmit} />
-      )}
-
-      {currentPage === "results" && quizAnswers && (
-        <ResultsPage
-          answers={quizAnswers}
-          onRestart={handleRestartQuiz}
+      <Routes>
+        <Route path="/" element={<HomePage onNavigate={handleNavigate} />} />
+        <Route path="/quiz" element={<QuizPage onSubmit={handleQuizSubmit} />} />
+        <Route
+          path="/results"
+          element={
+            quizAnswers ? (
+              <ResultsPage answers={quizAnswers} onRestart={handleRestartQuiz} />
+            ) : (
+              <Navigate to="/quiz" replace />
+            )
+          }
         />
-      )}
-
-      {currentPage === "resources" && <ResourcesPage />}
-
-      {currentPage === "reminder" && (
-        <ReminderPage
-          fitzpatrickType={fitzpatrickType}
-          location={location}
-          setLocation={setLocation}
-          uvIndex={uvIndex}
-          setUvIndex={setUvIndex}
-          timeRemaining={timeRemaining}
-          setTimeRemaining={setTimeRemaining}
-          isActive={isActive}
-          setIsActive={setIsActive}
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route
+          path="/reminder"
+          element={
+            <ReminderPage
+              fitzpatrickType={fitzpatrickType}
+              location={geoLocation}
+              setLocation={setGeoLocation}
+              uvIndex={uvIndex}
+              setUvIndex={setUvIndex}
+              timeRemaining={timeRemaining}
+              setTimeRemaining={setTimeRemaining}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
+          }
         />
-      )}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <HashRouter>
+      <AppContent />
+    </HashRouter>
   );
 }
