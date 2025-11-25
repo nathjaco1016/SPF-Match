@@ -3,6 +3,7 @@ import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Alert, AlertDescription } from "../assets/alert";
 import { Clock, MapPin, Sun, AlertCircle } from "lucide-react";
+import { REAPPLICATION_TIME_TABLE, UV_LEVELS } from "../constants/config";
 
 interface ReminderPageProps {
   fitzpatrickType?: number;
@@ -42,17 +43,7 @@ export function ReminderPage({
     uv: number,
     fitzpatrick: number,
   ): number => {
-    // Time in minutes based on Fitzpatrick type and UV index
-    const timeTable: { [key: number]: { [key: string]: number } } = {
-      1: { '1-2': 120, '3-5': 60, '6-7': 40, '8-10': 20, '11+': 10 },
-      2: { '1-2': 120, '3-5': 80, '6-7': 60, '8-10': 30, '11+': 20 },
-      3: { '1-2': 180, '3-5': 100, '6-7': 80, '8-10': 40, '11+': 30 },
-      4: { '1-2': 180, '3-5': 120, '6-7': 100, '8-10': 60, '11+': 40 },
-      5: { '1-2': 200, '3-5': 140, '6-7': 120, '8-10': 80, '11+': 60 },
-      6: { '1-2': 200, '3-5': 160, '6-7': 140, '8-10': 100, '11+': 80 },
-    };
-
-    const skinTypeTable = timeTable[fitzpatrick] || timeTable[3];
+    const skinTypeTable = REAPPLICATION_TIME_TABLE[fitzpatrick] || REAPPLICATION_TIME_TABLE[3];
 
     // Determine UV range
     if (uv >= 11) return skinTypeTable['11+'];
@@ -143,15 +134,8 @@ export function ReminderPage({
   const getUVLevel = (
     uv: number,
   ): { level: string; color: string } => {
-    if (uv >= 11)
-      return { level: "Extreme", color: "text-purple-600" };
-    if (uv >= 8)
-      return { level: "Very High", color: "text-red-600" };
-    if (uv >= 6)
-      return { level: "High", color: "text-orange-600" };
-    if (uv >= 3)
-      return { level: "Moderate", color: "text-yellow-600" };
-    return { level: "Low", color: "text-green-600" };
+    const uvLevel = UV_LEVELS.find(level => uv >= level.threshold);
+    return { level: uvLevel?.level || "Low", color: uvLevel?.color || "text-green-600" };
   };
 
   return (
@@ -290,7 +274,7 @@ export function ReminderPage({
         </Card>
       </div>
 
-      <Card>
+      <Card className="mb-8">
         <CardHeader>
           <h3>Your Skin Type</h3>
         </CardHeader>
@@ -300,6 +284,53 @@ export function ReminderPage({
               ? `Fitzpatrick Type ${['I', 'II', 'III', 'IV', 'V', 'VI'][fitzpatrickType - 1]} - Your timer is adjusted based on your skin's sensitivity to UV exposure.`
               : "Complete the quiz to get a personalized timer based on your Fitzpatrick skin type."}
           </p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <h3>Reapplication Time Guidelines</h3>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground mb-4">
+            Recommended sunscreen reapplication intervals (in minutes) based on Fitzpatrick skin type and UV index:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 px-2">Fitzpatrick Type</th>
+                  <th className="text-center py-2 px-2">UV 1-2</th>
+                  <th className="text-center py-2 px-2">UV 3-5</th>
+                  <th className="text-center py-2 px-2">UV 6-7</th>
+                  <th className="text-center py-2 px-2">UV 8-10</th>
+                  <th className="text-center py-2 px-2">UV 11+</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(REAPPLICATION_TIME_TABLE).map(([type, times]) => (
+                  <tr
+                    key={type}
+                    className={`border-b ${fitzpatrickType && parseInt(type) === fitzpatrickType ? 'bg-primary/10' : ''}`}
+                  >
+                    <td className="py-2 px-2 font-medium">
+                      Type {['I', 'II', 'III', 'IV', 'V', 'VI'][parseInt(type) - 1]}
+                    </td>
+                    <td className="text-center py-2 px-2">{times['1-2']}</td>
+                    <td className="text-center py-2 px-2">{times['3-5']}</td>
+                    <td className="text-center py-2 px-2">{times['6-7']}</td>
+                    <td className="text-center py-2 px-2">{times['8-10']}</td>
+                    <td className="text-center py-2 px-2">{times['11+']}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {fitzpatrickType && (
+            <p className="text-xs text-muted-foreground mt-4">
+              Your skin type (Type {['I', 'II', 'III', 'IV', 'V', 'VI'][fitzpatrickType - 1]}) is highlighted above.
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>

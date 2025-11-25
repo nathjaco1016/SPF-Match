@@ -8,22 +8,16 @@ export const FITZPATRICK_THRESHOLDS = {
   6: Infinity,
 } as const;
 
-// Base reapplication time in minutes for each Fitzpatrick type
-export const REAPPLICATION_BASE_TIME: Record<number, number> = {
-  1: 30,  // Very fair skin
-  2: 45,  // Fair skin
-  3: 60,  // Medium skin
-  4: 75,  // Olive skin
-  5: 90,  // Brown skin
-  6: 105, // Dark skin
+// Reapplication time table (minutes) based on Fitzpatrick type and UV index
+// Source: Based on dermatological guidelines for sun protection
+export const REAPPLICATION_TIME_TABLE: { [key: number]: { [key: string]: number } } = {
+  1: { '1-2': 120, '3-5': 60, '6-7': 40, '8-10': 20, '11+': 10 },
+  2: { '1-2': 120, '3-5': 80, '6-7': 60, '8-10': 30, '11+': 20 },
+  3: { '1-2': 180, '3-5': 100, '6-7': 80, '8-10': 40, '11+': 30 },
+  4: { '1-2': 180, '3-5': 120, '6-7': 100, '8-10': 60, '11+': 40 },
+  5: { '1-2': 200, '3-5': 140, '6-7': 120, '8-10': 80, '11+': 60 },
+  6: { '1-2': 200, '3-5': 160, '6-7': 140, '8-10': 100, '11+': 80 },
 };
-
-// UV index adjustment factors for reapplication timing
-export const UV_ADJUSTMENT_FACTORS = {
-  extreme: { threshold: 8, factor: 0.5 },
-  high: { threshold: 6, factor: 0.7 },
-  moderate: { threshold: 3, factor: 0.85 },
-} as const;
 
 // UV index level classifications
 export const UV_LEVELS = [
