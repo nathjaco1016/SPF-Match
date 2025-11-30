@@ -9,6 +9,13 @@ interface NavigationProps {
   timeRemaining?: number | null;
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+  external?: boolean;
+  url?: string;
+}
+
 export function Navigation({
   currentPage,
   onNavigate,
@@ -17,12 +24,13 @@ export function Navigation({
 }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { id: "home", label: "Home" },
     { id: "quiz", label: "Quiz" },
     { id: "resources", label: "Resources" },
     { id: "reminder", label: "Reminder" },
-    { id: "feedback", label: "Feedback", external: true, url: "https://docs.google.com/forms/d/e/1FAIpQLSfY9xCSju8owhTAGZZphkUsMWJflbYndIDjeNf78UFoeWOkGQ/viewform" },
+    // Feedback link - commented out per client request
+    // { id: "feedback", label: "Feedback", external: true, url: "https://docs.google.com/forms/d/e/1FAIpQLSfY9xCSju8owhTAGZZphkUsMWJflbYndIDjeNf78UFoeWOkGQ/viewform" },
   ];
 
   const handleNavigate = (page: string) => {
