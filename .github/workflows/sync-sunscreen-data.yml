@@ -68,10 +68,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Pull latest changes to avoid conflicts
-          echo "Pulling latest changes..."
-          git pull --rebase origin main
-
           # Show current state before adding
           echo "Current git status:"
           git status
@@ -101,6 +97,7 @@ jobs:
                 if [ $i -lt 3 ]; then
                   echo "⚠️ Push failed, pulling and retrying... (attempt $i/3)"
                   git pull --rebase origin main
+                  # After rebase, push again
                 else
                   echo "❌ Push failed after 3 attempts"
                   exit 1
