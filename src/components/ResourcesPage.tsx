@@ -13,7 +13,8 @@ export function ResourcesPage() {
     async function fetchResources() {
       try {
         // Fetch from static JSON file (synced via GitHub Actions)
-        const response = await fetch("/SPF-Match/data/resources.json");
+        // Add cache-busting query parameter to ensure fresh data
+        const response = await fetch(`/SPF-Match/data/resources.json?t=${Date.now()}`);
 
         if (!response.ok) {
           throw new Error(`Failed to fetch resources: ${response.statusText}`);
