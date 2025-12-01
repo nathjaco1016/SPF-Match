@@ -1,0 +1,91 @@
+name: Sync Resources from Google Sheets
+
+on:
+  # Triggered by repository_dispatch event from Google Apps Script
+  repository_dispatch:
+    types: [sync-resources]
+
+  # Manual trigger for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch resources from Google Sheets
+        env:
+          GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
+          GOOGLE_SHEETS_ID: ${{ secrets.VITE_GOOGLE_SHEETS_ID }}
+        run: |
+          # Fetch the data from Google Sheets API (Resource tab, columns A:B)
+          SHEET_URL="https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_ID}/values/Resource!A:B?key=${GOOGLE_SHEETS_API_KEY}"
+
+          echo "Fetching resources from Google Sheets..."
+          echo "Sheet ID: ${GOOGLE_SHEETS_ID}"
+
+          # Download the data with error handling
+          HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/resources_response.json "${SHEET_URL}")
+
+          echo "HTTP Response Code: ${HTTP_CODE}"
+
+          if [ "${HTTP_CODE}" != "200" ]; then
+            echo "Error: Failed to fetch resources from Google Sheets"
+            echo "Response:"
+            cat /tmp/resources_response.json
+            exit 1
+          fi
+
+          echo "Successfully fetched resources from Google Sheets"
+          echo "Response preview:"
+          cat /tmp/resources_response.json
+
+          # Create data directory if it doesn't exist
+          mkdir -p public/data
+
+          # Transform the data using Node.js
+          node .github/scripts/transform-resources.cjs /tmp/resources_response.json public/data/resources.json
+
+          echo ""
+          echo "Transform complete. Output:"
+          cat public/data/resources.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Show current state before adding
+          echo "Current git status:"
+          git status
+
+          git add public/data/resources.json
+
+          # Show what would be committed
+          echo ""
+          echo "Changes to be committed:"
+          git diff --staged --stat
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo ""
+            echo "⚠️ No changes to commit - data is identical to current version"
+          else
+            echo ""
+            echo "📝 Changes detected, committing..."
+            git commit -m "Update resources from Google Sheets"
+            git push
+            echo "✅ Resources synced - deployment workflow will trigger automatically via workflow_run event"
+          fi
