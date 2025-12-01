@@ -67,6 +67,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Pull latest changes to avoid conflicts
+          echo "Pulling latest changes..."
+          git pull --rebase origin main
+
           # Show current state before adding
           echo "Current git status:"
           git status
@@ -86,6 +90,20 @@ jobs:
             echo ""
             echo "📝 Changes detected, committing..."
             git commit -m "Update resources from Google Sheets"
-            git push
-            echo "✅ Resources synced - deployment workflow will trigger automatically via workflow_run event"
+
+            # Push with retry logic in case of race conditions
+            for i in {1..3}; do
+              if git push; then
+                echo "✅ Resources synced - deployment workflow will trigger automatically via workflow_run event"
+                break
+              else
+                if [ $i -lt 3 ]; then
+                  echo "⚠️ Push failed, pulling and retrying... (attempt $i/3)"
+                  git pull --rebase origin main
+                else
+                  echo "❌ Push failed after 3 attempts"
+                  exit 1
+                fi
+              fi
+            done
           fi
