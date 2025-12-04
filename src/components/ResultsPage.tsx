@@ -4,7 +4,7 @@ import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Badge } from "../assets/badge";
 import { Alert, AlertTitle, AlertDescription } from "../assets/alert";
-import { calculateFitzpatrickType, getSkinType } from "./QuizPage";
+import { calculateFitzpatrickType, getSkinType } from "../utils/fitzpatrick";
 import { FITZPATRICK_INFO, SKIN_TYPE_INFO } from "../constants/skinTypeInfo";
 import type { SunscreenProduct } from "../types/sunscreen";
 

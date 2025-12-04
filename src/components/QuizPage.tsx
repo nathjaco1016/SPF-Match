@@ -10,7 +10,7 @@ interface QuizPageProps {
   onSubmit: (answers: Record<string, string | string[]>) => void;
 }
 
-export const questions = [
+const questions = [
   {
     id: "eyeColor",
     question: "What color are your eyes?",
@@ -178,50 +178,6 @@ export const questions = [
     ],
   },
 ];
-
-export function calculateFitzpatrickType(
-  answers: Record<string, string | string[]>,
-): number {
-  let totalScore = 0;
-
-  for (let i = 0; i < questions.length - 1; i++) {
-    const question = questions[i];
-    const answer = answers[question.id];
-    // Skip if answer is an array (preference questions)
-    if (typeof answer === 'string') {
-      const optionIndex = question.options.indexOf(answer);
-      if (optionIndex !== -1 && question.scores) {
-        totalScore += question.scores[optionIndex];
-      }
-    }
-  }
-
-  if (totalScore <= 7) return 1;
-  if (totalScore <= 16) return 2;
-  if (totalScore <= 25) return 3;
-  if (totalScore <= 30) return 4;
-  if (totalScore <= 34) return 5;
-  return 6;
-}
-
-export function getSkinType(
-  answers: Record<string, string | string[]>,
-): string {
-  const skinTypeQuestion = questions.find((q) => q.id === "skinType");
-  if (!skinTypeQuestion || !skinTypeQuestion.types) {
-    return "normal"; // Default fallback
-  }
-
-  const answer = answers["skinType"];
-  if (typeof answer === "string") {
-    const optionIndex = skinTypeQuestion.options.indexOf(answer);
-    if (optionIndex !== -1 && skinTypeQuestion.types[optionIndex]) {
-      return skinTypeQuestion.types[optionIndex];
-    }
-  }
-
-  return "normal"; // Default fallback
-}
 
 export function QuizPage({
   onSubmit,
