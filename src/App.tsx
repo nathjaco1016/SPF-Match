@@ -54,8 +54,8 @@ function AppContent() {
             ) {
               new Notification("SPFMatch Reminder", {
                 body: "Time to reapply your sunscreen!",
-                icon: "/SPF-Match/images/logo.png",
-                badge: "/SPF-Match/images/logo.png",
+                icon: "/images/logo.png",
+                badge: "/images/logo.png",
               });
             }
 

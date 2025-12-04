@@ -68,7 +68,7 @@ export function ResultsPage({
         // Use base path - in dev and prod, Vite sets this correctly
         // Add timestamp to bust cache at URL level
         const timestamp = Date.now();
-        const response = await fetch(`/SPF-Match/data/sunscreen-database.json?t=${timestamp}`, {
+        const response = await fetch(`/data/sunscreen-database.json?t=${timestamp}`, {
           cache: 'no-cache',
           headers: {
             'Cache-Control': 'no-cache',

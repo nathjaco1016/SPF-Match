@@ -154,7 +154,7 @@ Expected output: 10/10 tests passed
 # Start dev server
 npm run dev
 
-# Open http://localhost:5173/SPF-Match/
+# Open http://localhost:5173/
 # Execute TC-01 through TC-05
 ```
 
