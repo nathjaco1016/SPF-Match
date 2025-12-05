@@ -54,7 +54,7 @@ Your Google Sheets document should have the following columns in **Row 1** (head
 - `Filter_Type` - "Physical", "Chemical", or "Mixture"
 - `SPF` - SPF number (e.g., 30, 50)
 - `Vehicle` - "Cream/lotion", "Spray", "Powder", "Stick", etc.
-- `Tint` - "Yes", "No", "Tinted", or "Untinted"
+- `Tint` - "Yes", "No", or "Transparent"
 - `Price` - Price in USD with or without $ sign (e.g., "$15.99" or "15.99")
 - `Size(oz)` - Size in fl oz (e.g., 1.7)
 - `Link` - (Optional) Product purchase URL
@@ -191,7 +191,7 @@ The generated JSON should look like:
   "1-normal": [
     {
       "name": "Product Name",
-      "filterType": "Mineral",
+      "filterType": "Physical",
       "spf": 50,
       "vehicle": "Lotion",
       "tint": "Tinted",

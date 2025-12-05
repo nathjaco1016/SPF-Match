@@ -151,7 +151,7 @@ const questions = [
     id: "filterType",
     question: "Which sunscreen filter type would you like?",
     options: [
-      "Physical",
+      "Physical/mineral",
       "Chemical",
       "Mixture",
       "Anything is fine",
