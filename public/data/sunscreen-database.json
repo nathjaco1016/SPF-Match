@@ -11,7 +11,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -29,7 +29,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -47,7 +47,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -65,7 +65,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -83,7 +83,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -102,7 +102,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -141,7 +141,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -159,7 +159,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -177,7 +177,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -217,7 +217,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -235,7 +235,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -253,7 +253,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -289,7 +289,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -307,7 +307,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -326,7 +326,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -346,7 +346,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -364,7 +364,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -382,7 +382,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -441,7 +441,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://bluelizardsunscreen.com/products/sensitive-mineral-sunscreen-lotion-spf-50",
       "unitPrice": 4.33,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "sensitive"
       ],
@@ -476,7 +476,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -495,7 +495,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -554,7 +554,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -572,7 +572,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -590,7 +590,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -608,7 +608,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -626,7 +626,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -645,7 +645,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -684,7 +684,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -720,7 +720,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -738,7 +738,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -778,7 +778,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -796,7 +796,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -814,7 +814,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -850,7 +850,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -868,7 +868,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -887,7 +887,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -907,7 +907,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -943,7 +943,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -961,7 +961,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -1020,7 +1020,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://bluelizardsunscreen.com/products/sensitive-mineral-sunscreen-lotion-spf-50",
       "unitPrice": 4.33,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "sensitive"
       ],
@@ -1055,7 +1055,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -1074,7 +1074,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -1133,7 +1133,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1151,7 +1151,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1169,7 +1169,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -1187,7 +1187,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -1205,7 +1205,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -1224,7 +1224,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1263,7 +1263,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1299,7 +1299,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1317,7 +1317,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -1357,7 +1357,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1375,7 +1375,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1393,7 +1393,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/protect-hydrate-body-lotion-sunscreen-spf-30",
       "unitPrice": 4.163333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -1429,7 +1429,7 @@
       "description": "SPF 50 Chemical sunscreen",
       "link": "https://www.walmart.com/ip/Hawaiian-Tropic-Skin-Defense-Sunscreen-Lotion-SPF-50-6oz/549118419",
       "unitPrice": 1.9983333333333333,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "dry"
@@ -1447,7 +1447,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -1466,7 +1466,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1486,7 +1486,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1522,7 +1522,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1540,7 +1540,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -1599,7 +1599,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://bluelizardsunscreen.com/products/sensitive-mineral-sunscreen-lotion-spf-50",
       "unitPrice": 4.33,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "sensitive"
       ],
@@ -1634,7 +1634,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://mdsolarsciences.com/products/mineral-moisture-defense-spf-50",
       "unitPrice": 9.75,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -1653,7 +1653,7 @@
       "description": "SPF 100 Chemical sunscreen",
       "link": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-100/6887310",
       "unitPrice": 2.9966666666666666,
-      "fitzpatrickScale": "I–III",
+      "fitzpatrickScale": "I-III",
       "skinTypes": [
         "oily",
         "combination",
@@ -1712,7 +1712,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1730,7 +1730,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1748,7 +1748,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1766,7 +1766,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1840,7 +1840,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -1859,7 +1859,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1877,7 +1877,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -1897,7 +1897,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1953,7 +1953,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -1989,7 +1989,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2025,7 +2025,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2064,7 +2064,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2082,7 +2082,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2100,7 +2100,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2118,7 +2118,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2174,7 +2174,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -2193,7 +2193,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2211,7 +2211,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2231,7 +2231,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2287,7 +2287,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2305,7 +2305,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2341,7 +2341,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2380,7 +2380,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -2420,7 +2420,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://blackgirlsunscreen.com/product/black-girl-sunscreen-spf-30",
       "unitPrice": 6.329999999999999,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "dry",
         "normal"
@@ -2438,7 +2438,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.boldenusa.com/products/spf-30-brightening-moisturizer",
       "unitPrice": 14,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -2456,7 +2456,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2474,7 +2474,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2492,7 +2492,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.refinery29.com/en-us/shop/product/active-radiance-day-moisture-broad-spectrum-spf-30-120002",
       "unitPrice": 23.529411764705884,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -2510,7 +2510,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://bluemercury.com/products/unsun-cosmetics-mineral-tinted-face-sunscreen-lotion-spf-30",
       "unitPrice": 17.641176470588235,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2528,7 +2528,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2546,7 +2546,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2620,7 +2620,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -2639,7 +2639,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2657,7 +2657,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2677,7 +2677,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2733,7 +2733,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2769,7 +2769,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2787,7 +2787,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -2826,7 +2826,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://blackgirlsunscreen.com/product/black-girl-sunscreen-spf-30",
       "unitPrice": 6.329999999999999,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "dry",
         "normal"
@@ -2844,7 +2844,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2862,7 +2862,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2880,7 +2880,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://bluemercury.com/products/unsun-cosmetics-mineral-tinted-face-sunscreen-lotion-spf-30",
       "unitPrice": 17.641176470588235,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2898,7 +2898,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2916,7 +2916,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -2972,7 +2972,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -2991,7 +2991,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3009,7 +3009,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3029,7 +3029,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3047,7 +3047,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.boldenusa.com/products/spf-30-brightening-moisturizer",
       "unitPrice": 14,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3065,7 +3065,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.refinery29.com/en-us/shop/product/active-radiance-day-moisture-broad-spectrum-spf-30-120002",
       "unitPrice": 23.529411764705884,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3121,7 +3121,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3139,7 +3139,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3157,7 +3157,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3196,7 +3196,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -3236,7 +3236,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://blackgirlsunscreen.com/product/black-girl-sunscreen-spf-30",
       "unitPrice": 6.329999999999999,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "dry",
         "normal"
@@ -3254,7 +3254,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.boldenusa.com/products/spf-30-brightening-moisturizer",
       "unitPrice": 14,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3272,7 +3272,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3290,7 +3290,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3308,7 +3308,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.refinery29.com/en-us/shop/product/active-radiance-day-moisture-broad-spectrum-spf-30-120002",
       "unitPrice": 23.529411764705884,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3326,7 +3326,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://bluemercury.com/products/unsun-cosmetics-mineral-tinted-face-sunscreen-lotion-spf-30",
       "unitPrice": 17.641176470588235,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3344,7 +3344,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3362,7 +3362,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3418,7 +3418,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -3437,7 +3437,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3455,7 +3455,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3475,7 +3475,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3531,7 +3531,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3567,7 +3567,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3585,7 +3585,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3624,7 +3624,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://blackgirlsunscreen.com/product/black-girl-sunscreen-spf-30",
       "unitPrice": 6.329999999999999,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "dry",
         "normal"
@@ -3642,7 +3642,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://www.drunkelephant.com/collections/sun-protection/umbra-sheer-mineral-cream-spf-30pa-812343032804.html",
       "unitPrice": 11.333333333333334,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3660,7 +3660,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://store.nydermatologygroup.com/products/chem-free-active-defense-spf30",
       "unitPrice": 24.5,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3678,7 +3678,7 @@
       "description": "SPF 30 Physical sunscreen",
       "link": "https://bluemercury.com/products/unsun-cosmetics-mineral-tinted-face-sunscreen-lotion-spf-30",
       "unitPrice": 17.641176470588235,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3696,7 +3696,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30",
       "unitPrice": 7.795999999999999,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3714,7 +3714,7 @@
       "description": "SPF 30 Mixture sunscreen",
       "link": "https://www.amazon.com/Sunscreen-Broad-Spectrum-Moisturizing-Dermatologist-Recommended-Mineral-Based/dp/B000PHRIYE",
       "unitPrice": 7.5,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3752,7 +3752,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
@@ -3771,7 +3771,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.cerave.com/sunscreen/face/hydrating-mineral-sunscreen-face-lotion-spf-50",
       "unitPrice": 5.996,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3789,7 +3789,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html",
       "unitPrice": 7.198,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "normal",
         "dry"
@@ -3809,7 +3809,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.mariobadescu.com/products/oil-free-moisturizer-spf-30",
       "unitPrice": 14,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3827,7 +3827,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.boldenusa.com/products/spf-30-brightening-moisturizer",
       "unitPrice": 14,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3845,7 +3845,7 @@
       "description": "SPF 30 Chemical sunscreen",
       "link": "https://www.refinery29.com/en-us/shop/product/active-radiance-day-moisture-broad-spectrum-spf-30-120002",
       "unitPrice": 23.529411764705884,
-      "fitzpatrickScale": "V–VI",
+      "fitzpatrickScale": "V-VI",
       "skinTypes": [
         "normal",
         "combination"
@@ -3901,7 +3901,7 @@
       "description": "SPF 40 Chemical sunscreen",
       "link": "https://www.skinsafeproducts.com/julep-beauty-no-excuses-broad-spectrum-invisible-sunscreen-gel-for-face-spf-40-1-fl-oz-30-ml",
       "unitPrice": 20,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3919,7 +3919,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.colorescience.com/products/sunforgettable-total-protection-sheer-matte-spf-30-sunscreen-brush",
       "unitPrice": 309.5238095238095,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3937,7 +3937,7 @@
       "description": "SPF 60 Chemical sunscreen",
       "link": "https://www.laroche-posay.us/our-products/sun/face-sunscreen/anthelios-clear-skin-oil-free-sunscreen-spf-60-antheliosclearskin.html",
       "unitPrice": 11.758823529411764,
-      "fitzpatrickScale": "I–VI",
+      "fitzpatrickScale": "I-VI",
       "skinTypes": [
         "oily",
         "combination"
@@ -3976,7 +3976,7 @@
       "description": "SPF 50 Physical sunscreen",
       "link": "https://www.murad.com/products/city-skin-age-defense-spf-50",
       "unitPrice": 40,
-      "fitzpatrickScale": "IV–VI",
+      "fitzpatrickScale": "IV-VI",
       "skinTypes": [
         "normal",
         "sensitive",
