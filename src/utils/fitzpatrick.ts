@@ -19,7 +19,7 @@ export function calculateFitzpatrickType(
     const answer = answers[question.id];
 
     if (answer && question.scores) {
-      const optionIndex = question.options.indexOf(answer);
+      const optionIndex = question.options.indexOf(answer as string);
       if (optionIndex !== -1) {
         totalScore += question.scores[optionIndex];
       }
@@ -48,7 +48,7 @@ export function getSkinType(answers: QuizAnswers): SkinType {
   const answer = answers["skinType"];
 
   if (skinTypeQuestion && skinTypeQuestion.types && answer) {
-    const optionIndex = skinTypeQuestion.options.indexOf(answer);
+    const optionIndex = skinTypeQuestion.options.indexOf(answer as string);
     if (optionIndex !== -1) {
       return skinTypeQuestion.types[optionIndex] as SkinType;
     }
