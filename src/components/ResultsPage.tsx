@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import { ExternalLink } from "lucide-react"; // Commented out with feedback survey
 import { Button } from "../assets/button";
 import { Card, CardContent, CardHeader } from "../assets/card";
 import { Badge } from "../assets/badge";
@@ -346,17 +345,6 @@ export function ResultsPage({
         <Button size="lg" onClick={onRestart}>
           Restart Quiz
         </Button>
-        {/* Feedback survey button - commented out per client request */}
-        {/* <Button size="lg" variant="outline" asChild className="gap-2">
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfY9xCSju8owhTAGZZphkUsMWJflbYndIDjeNf78UFoeWOkGQ/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Share Feedback
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </Button> */}
       </div>
     </div>
   );

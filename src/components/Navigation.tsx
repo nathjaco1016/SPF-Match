@@ -29,8 +29,6 @@ export function Navigation({
     { id: "quiz", label: "Quiz" },
     { id: "resources", label: "Resources" },
     { id: "reminder", label: "Reminder" },
-    // Feedback link - commented out per client request
-    // { id: "feedback", label: "Feedback", external: true, url: "https://docs.google.com/forms/d/e/1FAIpQLSfY9xCSju8owhTAGZZphkUsMWJflbYndIDjeNf78UFoeWOkGQ/viewform" },
   ];
 
   const handleNavigate = (page: string) => {
