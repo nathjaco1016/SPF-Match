@@ -69,19 +69,17 @@ export function ResourcesPage() {
           {resources.map((resource, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-lg font-semibold">{resource.title}</h3>
-                  <ExternalLink className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                </div>
+                <h3>{resource.title}</h3>
               </CardHeader>
               <CardContent>
                 <a
                   href={resource.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline break-all"
+                  className="inline-flex items-center gap-2 text-primary hover:underline"
                 >
                   {resource.link}
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </CardContent>
             </Card>
@@ -91,3 +89,40 @@ export function ResourcesPage() {
     </div>
   );
 }
+
+// export function ResourcesPage() {
+//   return (
+//     <div className="container mx-auto px-4 py-12 max-w-5xl">
+//       <div className="mb-8">
+//         <h1 className="mb-4">
+//           Resources
+//         </h1>
+//         <p className="text-muted-foreground">
+//           Explore expert articles, guides, and helpful resources for sunscreen education and skin health.
+//         </p>
+//       </div>
+
+//       <div className="grid md:grid-cols-2 gap-6">
+//         {resourceLinks.map((resource, index) => (
+//           <Card
+//             key={index}
+//             className="hover:shadow-lg transition-shadow"
+//           >
+//             <CardContent className="pt-6">
+//               <h3 className="mb-3">{resource.title}</h3>
+//               <a
+//                 href={resource.url}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//                 className="inline-flex items-center gap-2 text-primary hover:underline"
+//               >
+//                 Read More
+//                 <ExternalLink className="w-4 h-4" />
+//               </a>
+//             </CardContent>
+//           </Card>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
