@@ -274,19 +274,6 @@ export function ReminderPage({
         </Card>
       </div>
 
-      <Card className="mb-8">
-        <CardHeader>
-          <h3>Your Skin Type</h3>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            {fitzpatrickType
-              ? `Fitzpatrick Type ${['I', 'II', 'III', 'IV', 'V', 'VI'][fitzpatrickType - 1]} - Your timer is adjusted based on your skin's sensitivity to UV exposure.`
-              : "Complete the quiz to get a personalized timer based on your Fitzpatrick skin type."}
-          </p>
-        </CardContent>
-      </Card>
-
       <Card>
         <CardHeader>
           <h3>Reapplication Time Guidelines</h3>
