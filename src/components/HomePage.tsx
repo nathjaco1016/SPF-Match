@@ -77,23 +77,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
           <Card
             className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/50"
-            onClick={() => onNavigate("reminder")}
-          >
-            <CardContent className="pt-6 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                <Clock className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="mb-3">Smart Reminders</h3>
-              <p className="text-muted-foreground">
-                Get UV-based reapplication reminders tailored to
-                your location and skin type for optimal
-                protection.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card
-            className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/50"
             onClick={() => onNavigate("resources")}
           >
             <CardContent className="pt-6 text-center">
@@ -105,6 +88,23 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 Access curated articles and guides about
                 sunscreen application, UV protection, and skin
                 health.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/50"
+            onClick={() => onNavigate("reminder")}
+          >
+            <CardContent className="pt-6 text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                <Clock className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="mb-3">Smart Reminders</h3>
+              <p className="text-muted-foreground">
+                Get UV-based reapplication reminders tailored to
+                your location and skin type for optimal
+                protection.
               </p>
             </CardContent>
           </Card>

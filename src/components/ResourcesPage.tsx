@@ -39,7 +39,7 @@ export function ResourcesPage() {
       <div className="mb-8">
         <h1 className="mb-4">Resources</h1>
         <p className="text-muted-foreground">
-          Helpful educational resources about sun protection and skin cancer prevention.
+          Explore expert articles, guides, and helpful resources for sunscreen education and skin health.
         </p>
       </div>
 
