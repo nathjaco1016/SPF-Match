@@ -167,66 +167,18 @@ npm run dev
 
 ---
 
-## Test Data (Oracles)
+## Scoring Algorithm
 
-### Fitzpatrick Type I (Expected: Type 1)
-```javascript
-{
-  eyeColor: "Light blue, gray, or green",
-  hairColor: "Red or light blonde",
-  skinColor: "Ivory white",
-  freckles: "Many",
-  sunTanning: "Never, I only burn",
-  sunBurning: "Always",
-  skinReaction: "Very sensitive, often burns",
-  familyBackground: "Scandinavian, Irish, or Scottish",
-  sunExposure: "Rarely, I avoid the sun",
-  ageRange: "Under 30",
-  skinType: "Normal skin (balanced, not too oily or dry)"
-}
-```
+The quiz uses a point-based scoring system to determine Fitzpatrick skin type:
 
-### Fitzpatrick Type III (Expected: Type 3)
-```javascript
-{
-  eyeColor: "Hazel or light brown",
-  hairColor: "Light brown",
-  skinColor: "Light brown or olive",
-  freckles: "Few",
-  sunTanning: "Sometimes",
-  sunBurning: "Sometimes",
-  skinReaction: "Moderately sensitive",
-  familyBackground: "European (mixed)",
-  sunExposure: "Occasionally",
-  ageRange: "30-40",
-  skinType: "Normal skin (balanced, not too oily or dry)"
-}
-```
+- **Type I**: Total score 0-7 points
+- **Type II**: Total score 8-16 points
+- **Type III**: Total score 17-25 points
+- **Type IV**: Total score 26-30 points
+- **Type V**: Total score 31-34 points
+- **Type VI**: Total score 35+ points
 
-### Fitzpatrick Type VI (Expected: Type 6)
-```javascript
-{
-  eyeColor: "Dark brown or black",
-  hairColor: "Black",
-  skinColor: "Dark brown or black",
-  freckles: "None",
-  sunTanning: "My skin is naturally dark",
-  sunBurning: "Never",
-  skinReaction: "Very resistant, never burns",
-  familyBackground: "African or Afro-Caribbean",
-  sunExposure: "Very often, I spend a lot of time outdoors",
-  ageRange: "Over 60",
-  skinType: "Normal skin (balanced, not too oily or dry)"
-}
-```
-
-### Scoring Algorithm
-- Type I: score ≤ 7
-- Type II: score ≤ 16
-- Type III: score ≤ 25
-- Type IV: score ≤ 30
-- Type V: score ≤ 34
-- Type VI: score > 34
+Each of the first 10 questions awards 0-4 points based on the selected answer. The 11th question determines facial skin type (normal, oily, dry, combination, sensitive) using a different scoring mechanism.
 
 ---
 
