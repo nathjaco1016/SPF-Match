@@ -116,3 +116,25 @@ Deploy Workflow → Build Vite App → GitHub Pages
 - **JavaScript** - Google Apps Script for triggers
 - **JavaScript (Node.js)** - GitHub Actions transformation scripts
 - **Shell/Bash** - GitHub Actions workflow orchestration
+
+# Unit Tests
+
+**Files**: `src/tests.ts` and `run-tests.js`
+
+**Tests**:
+1. Fitzpatrick Type I (score 0-7)
+2. Fitzpatrick Type II (score 8-16)
+3. Fitzpatrick Type III (score 17-25)
+4. Fitzpatrick Type IV (score 26-30)
+5. Fitzpatrick Type VI (score 35+)
+6. Oily skin type extraction
+7. Dry skin type extraction
+8. Combination skin type extraction
+9. Sensitive skin type extraction
+10. Default normal skin type extraction
+
+**How to Test**:
+
+1. Run `node run-tests.js`
+
+**Expected Output**: All 10 tests pass with "✅ All tests passed!" message
