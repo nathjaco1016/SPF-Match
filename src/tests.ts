@@ -1,6 +1,6 @@
 /**
  * Simple test suite for SPFMatch application
- * This file contains 10 test functions to validate core functionality
+ * Tests use ONLY actual quiz questions and answers from the website
  */
 
 import { calculateFitzpatrickType, getSkinType } from "./utils/fitzpatrick";
@@ -38,20 +38,21 @@ function runTest(
 
 /**
  * Test 1: Verify Fitzpatrick Type I calculation (score 0-7)
+ * Uses answers that should score very low (0 points each)
  */
 function testFitzpatrickTypeI() {
   const answers: QuizAnswers = {
-    eyeColor: "Light blue, gray, or green",
-    hairColor: "Red or light blonde",
-    skinColor: "Ivory white",
+    eyeColor: "Light blue, gray or green",
+    hairColor: "Sandy red",
+    skinColor: "Reddish",
     freckles: "Many",
-    sunTanning: "Never, I only burn",
-    sunBurning: "Always",
-    skinReaction: "Very sensitive, often burns",
-    familyBackground: "Scandinavian, Irish, or Scottish",
-    sunExposure: "Rarely, I avoid the sun",
-    ageRange: "Under 30",
-    skinType: "Normal skin (balanced, not too oily or dry)",
+    sunReaction: "Painful redness, blistering, peeling",
+    tanningDegree: "Hardly or not at all",
+    tanningHours: "Never",
+    faceReaction: "Very sensitive",
+    lastExposure: "More than 3 months ago",
+    faceExposure: "Never",
+    skinType: "Hydrated and comfortable",
   };
 
   const result = calculateFitzpatrickType(answers);
@@ -59,175 +60,22 @@ function testFitzpatrickTypeI() {
 }
 
 /**
- * Test 2: Verify Fitzpatrick Type VI calculation (score 35+)
- */
-function testFitzpatrickTypeVI() {
-  const answers: QuizAnswers = {
-    eyeColor: "Dark brown or black",
-    hairColor: "Black",
-    skinColor: "Dark brown or black",
-    freckles: "None",
-    sunTanning: "My skin is naturally dark",
-    sunBurning: "Never",
-    skinReaction: "Very resistant, never burns",
-    familyBackground: "African or Afro-Caribbean",
-    sunExposure: "Very often, I spend a lot of time outdoors",
-    ageRange: "Over 60",
-    skinType: "Normal skin (balanced, not too oily or dry)",
-  };
-
-  const result = calculateFitzpatrickType(answers);
-  return result === 6;
-}
-
-/**
- * Test 3: Verify Fitzpatrick Type III calculation (score 17-25)
- */
-function testFitzpatrickTypeIII() {
-  const answers: QuizAnswers = {
-    eyeColor: "Hazel or light brown",
-    hairColor: "Light brown",
-    skinColor: "Light brown or olive",
-    freckles: "Few",
-    sunTanning: "Sometimes",
-    sunBurning: "Sometimes",
-    skinReaction: "Moderately sensitive",
-    familyBackground: "European (mixed)",
-    sunExposure: "Occasionally",
-    ageRange: "30-40",
-    skinType: "Normal skin (balanced, not too oily or dry)",
-  };
-
-  const result = calculateFitzpatrickType(answers);
-  return result === 3;
-}
-
-/**
- * Test 4: Verify oily skin type extraction
- */
-function testOilySkinType() {
-  const answers: QuizAnswers = {
-    eyeColor: "Blue or gray",
-    hairColor: "Blonde",
-    skinColor: "Pale white",
-    freckles: "Some",
-    sunTanning: "Rarely",
-    sunBurning: "Often",
-    skinReaction: "Sensitive, burns easily",
-    familyBackground: "Northern European",
-    sunExposure: "Rarely, I avoid the sun",
-    ageRange: "Under 30",
-    skinType: "Oily skin (shiny, prone to acne)",
-  };
-
-  const result = getSkinType(answers);
-  return result === "oily";
-}
-
-/**
- * Test 5: Verify dry skin type extraction
- */
-function testDrySkinType() {
-  const answers: QuizAnswers = {
-    eyeColor: "Dark brown or black",
-    hairColor: "Black",
-    skinColor: "Dark brown or black",
-    freckles: "None",
-    sunTanning: "My skin is naturally dark",
-    sunBurning: "Never",
-    skinReaction: "Very resistant, never burns",
-    familyBackground: "African or Afro-Caribbean",
-    sunExposure: "Very often, I spend a lot of time outdoors",
-    ageRange: "Over 60",
-    skinType: "Dry skin (flaky, tight, rough)",
-  };
-
-  const result = getSkinType(answers);
-  return result === "dry";
-}
-
-/**
- * Test 6: Verify combination skin type extraction
- */
-function testCombinationSkinType() {
-  const answers: QuizAnswers = {
-    eyeColor: "Hazel or light brown",
-    hairColor: "Light brown",
-    skinColor: "Light brown or olive",
-    freckles: "Few",
-    sunTanning: "Sometimes",
-    sunBurning: "Sometimes",
-    skinReaction: "Moderately sensitive",
-    familyBackground: "European (mixed)",
-    sunExposure: "Occasionally",
-    ageRange: "30-40",
-    skinType: "Combination skin (oily T-zone, dry cheeks)",
-  };
-
-  const result = getSkinType(answers);
-  return result === "combination";
-}
-
-/**
- * Test 7: Verify sensitive skin type extraction
- */
-function testSensitiveSkinType() {
-  const answers: QuizAnswers = {
-    eyeColor: "Blue or gray",
-    hairColor: "Blonde",
-    skinColor: "Pale white",
-    freckles: "Some",
-    sunTanning: "Rarely",
-    sunBurning: "Often",
-    skinReaction: "Sensitive, burns easily",
-    familyBackground: "Northern European",
-    sunExposure: "Rarely, I avoid the sun",
-    ageRange: "Under 30",
-    skinType: "Sensitive skin (easily irritated, red, reactive)",
-  };
-
-  const result = getSkinType(answers);
-  return result === "sensitive";
-}
-
-/**
- * Test 8: Verify default skin type is normal
- */
-function testDefaultSkinType() {
-  const answers: QuizAnswers = {
-    eyeColor: "Hazel or light brown",
-    hairColor: "Light brown",
-    skinColor: "Light brown or olive",
-    freckles: "Few",
-    sunTanning: "Sometimes",
-    sunBurning: "Sometimes",
-    skinReaction: "Moderately sensitive",
-    familyBackground: "European (mixed)",
-    sunExposure: "Occasionally",
-    ageRange: "30-40",
-    skinType: "Normal skin (balanced, not too oily or dry)",
-  };
-
-  const result = getSkinType(answers);
-  return result === "normal";
-}
-
-/**
- * Test 9: Verify Fitzpatrick Type II calculation (score 8-16)
+ * Test 2: Verify Fitzpatrick Type II calculation (score 8-16)
+ * Uses answers that should score 1 point each
  */
 function testFitzpatrickTypeII() {
   const answers: QuizAnswers = {
-    eyeColor: "Blue or gray",
+    eyeColor: "Blue, gray, or green",
     hairColor: "Blonde",
-    skinColor: "Pale white",
-    freckles: "Some",
-    sunTanning: "Rarely",
-    sunBurning: "Often",
-    skinReaction: "Sensitive, burns easily",
-    familyBackground: "Northern European",
-    sunExposure: "Rarely, I avoid the sun",
-    ageRange: "Under 30",
-    skinType: "Normal skin (balanced, not too oily or dry)",
+    skinColor: "Very Pale",
+    freckles: "Several",
+    sunReaction: "Blistering followed by peeling",
+    tanningDegree: "Light color tan",
+    tanningHours: "Seldom",
+    faceReaction: "Sensitive",
+    lastExposure: "2-3 months ago",
+    faceExposure: "Hardly ever",
+    skinType: "Hydrated and comfortable",
   };
 
   const result = calculateFitzpatrickType(answers);
@@ -235,25 +83,205 @@ function testFitzpatrickTypeII() {
 }
 
 /**
- * Test 10: Verify Fitzpatrick Type IV calculation (score 26-30)
+ * Test 3: Verify Fitzpatrick Type III calculation (score 17-25)
+ * Uses answers that should score 2 points each
+ */
+function testFitzpatrickTypeIII() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Chestnut/ Dark Blonde",
+    skinColor: "Pale with a beige tint",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Hydrated and comfortable",
+  };
+
+  const result = calculateFitzpatrickType(answers);
+  return result === 3;
+}
+
+/**
+ * Test 4: Verify Fitzpatrick Type IV calculation (score 26-30)
+ * Uses answers that should score 3 points each
  */
 function testFitzpatrickTypeIV() {
   const answers: QuizAnswers = {
-    eyeColor: "Dark brown",
+    eyeColor: "Dark Brown",
     hairColor: "Dark brown",
-    skinColor: "Moderate brown",
-    freckles: "None",
-    sunTanning: "Often",
-    sunBurning: "Rarely",
-    skinReaction: "Minimally sensitive",
-    familyBackground: "Mediterranean, Asian, or Hispanic",
-    sunExposure: "Often",
-    ageRange: "40-50",
-    skinType: "Normal skin (balanced, not too oily or dry)",
+    skinColor: "Light brown",
+    freckles: "Incidental",
+    sunReaction: "Rare burns",
+    tanningDegree: "Tan very easily",
+    tanningHours: "Often",
+    faceReaction: "Very resistant",
+    lastExposure: "Less than a month ago",
+    faceExposure: "Often",
+    skinType: "Hydrated and comfortable",
   };
 
   const result = calculateFitzpatrickType(answers);
   return result === 4;
+}
+
+/**
+ * Test 5: Verify Fitzpatrick Type V calculation (score 31-34)
+ * Uses mix of answers scoring 3-4 points to reach 31-34 range
+ */
+function testFitzpatrickTypeV() {
+  const answers: QuizAnswers = {
+    eyeColor: "Dark Brown",
+    hairColor: "Black",
+    skinColor: "Dark brown",
+    freckles: "None",
+    sunReaction: "Never had burns",
+    tanningDegree: "Turn dark brown quickly",
+    tanningHours: "Always",
+    faceReaction: "Very resistant",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Hydrated and comfortable",
+  };
+
+  const result = calculateFitzpatrickType(answers);
+  return result === 5;
+}
+
+/**
+ * Test 6: Verify Fitzpatrick Type VI calculation (score 35+)
+ * Uses answers that should score 4 points each (maximum)
+ */
+function testFitzpatrickTypeVI() {
+  const answers: QuizAnswers = {
+    eyeColor: "Brownish Black",
+    hairColor: "Black",
+    skinColor: "Dark brown",
+    freckles: "None",
+    sunReaction: "Never had burns",
+    tanningDegree: "Turn dark brown quickly",
+    tanningHours: "Always",
+    faceReaction: "Never had a problem",
+    lastExposure: "Less than 2 weeks ago",
+    faceExposure: "Always",
+    skinType: "Hydrated and comfortable",
+  };
+
+  const result = calculateFitzpatrickType(answers);
+  return result === 6;
+}
+
+/**
+ * Test 7: Verify normal skin type extraction
+ */
+function testNormalSkinType() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Hydrated and comfortable",
+  };
+
+  const result = getSkinType(answers);
+  return result === "normal";
+}
+
+/**
+ * Test 8: Verify oily skin type extraction
+ */
+function testOilySkinType() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Shiny and greasy",
+  };
+
+  const result = getSkinType(answers);
+  return result === "oily";
+}
+
+/**
+ * Test 9: Verify dry skin type extraction
+ */
+function testDrySkinType() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Flaky, rough, and tight, sometimes itchy or irritated",
+  };
+
+  const result = getSkinType(answers);
+  return result === "dry";
+}
+
+/**
+ * Test 10: Verify combination skin type extraction
+ */
+function testCombinationSkinType() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Oily in some areas and dry in other areas",
+  };
+
+  const result = getSkinType(answers);
+  return result === "combination";
+}
+
+/**
+ * Test 11: Verify sensitive skin type extraction
+ */
+function testSensitiveSkinType() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Often stings or turns red in response to irritants",
+  };
+
+  const result = getSkinType(answers);
+  return result === "sensitive";
 }
 
 /**
@@ -265,71 +293,78 @@ export function runAllTests() {
   runTest(
     "Test 1: Fitzpatrick Type I",
     testFitzpatrickTypeI,
-    "Correctly calculates Type I (very fair skin)",
+    "Correctly calculates Type I (score 0-7)",
     "Failed to calculate Type I"
   );
 
   runTest(
-    "Test 2: Fitzpatrick Type VI",
-    testFitzpatrickTypeVI,
-    "Correctly calculates Type VI (deeply pigmented skin)",
-    "Failed to calculate Type VI"
+    "Test 2: Fitzpatrick Type II",
+    testFitzpatrickTypeII,
+    "Correctly calculates Type II (score 8-16)",
+    "Failed to calculate Type II"
   );
 
   runTest(
     "Test 3: Fitzpatrick Type III",
     testFitzpatrickTypeIII,
-    "Correctly calculates Type III (medium skin)",
+    "Correctly calculates Type III (score 17-25)",
     "Failed to calculate Type III"
   );
 
   runTest(
-    "Test 4: Oily Skin Type",
+    "Test 4: Fitzpatrick Type IV",
+    testFitzpatrickTypeIV,
+    "Correctly calculates Type IV (score 26-30)",
+    "Failed to calculate Type IV"
+  );
+
+  runTest(
+    "Test 5: Fitzpatrick Type V",
+    testFitzpatrickTypeV,
+    "Correctly calculates Type V (score 31-34)",
+    "Failed to calculate Type V"
+  );
+
+  runTest(
+    "Test 6: Fitzpatrick Type VI",
+    testFitzpatrickTypeVI,
+    "Correctly calculates Type VI (score 35+)",
+    "Failed to calculate Type VI"
+  );
+
+  runTest(
+    "Test 7: Normal Skin Type",
+    testNormalSkinType,
+    "Correctly identifies normal skin type",
+    "Failed to identify normal skin type"
+  );
+
+  runTest(
+    "Test 8: Oily Skin Type",
     testOilySkinType,
     "Correctly identifies oily skin type",
     "Failed to identify oily skin type"
   );
 
   runTest(
-    "Test 5: Dry Skin Type",
+    "Test 9: Dry Skin Type",
     testDrySkinType,
     "Correctly identifies dry skin type",
     "Failed to identify dry skin type"
   );
 
   runTest(
-    "Test 6: Combination Skin Type",
+    "Test 10: Combination Skin Type",
     testCombinationSkinType,
     "Correctly identifies combination skin type",
     "Failed to identify combination skin type"
   );
 
   runTest(
-    "Test 7: Sensitive Skin Type",
+    "Test 11: Sensitive Skin Type",
     testSensitiveSkinType,
     "Correctly identifies sensitive skin type",
     "Failed to identify sensitive skin type"
-  );
-
-  runTest(
-    "Test 8: Default Normal Skin Type",
-    testDefaultSkinType,
-    "Correctly defaults to normal skin type",
-    "Failed to default to normal skin type"
-  );
-
-  runTest(
-    "Test 9: Fitzpatrick Type II",
-    testFitzpatrickTypeII,
-    "Correctly calculates Type II (fair skin)",
-    "Failed to calculate Type II"
-  );
-
-  runTest(
-    "Test 10: Fitzpatrick Type IV",
-    testFitzpatrickTypeIV,
-    "Correctly calculates Type IV (moderate brown skin)",
-    "Failed to calculate Type IV"
   );
 
   // Print summary
