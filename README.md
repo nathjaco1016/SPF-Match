@@ -232,7 +232,7 @@ Devices:
 - 90% complete quiz without help
 - 90% understand results
 
-## Tools Used
+## Tools
 - Node.js: Unit Testing
 - Google Chrome: Integration Testing, Acceptance Testing
 - Chrome DevTools: Performance Testing
