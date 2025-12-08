@@ -1,6 +1,5 @@
 /**
  * Simple test suite for SPFMatch application
- * Tests use ONLY actual quiz questions and answers from the website
  */
 
 import { calculateFitzpatrickType, getSkinType } from "./utils/fitzpatrick";
