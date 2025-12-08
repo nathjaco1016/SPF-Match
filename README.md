@@ -117,24 +117,130 @@ Deploy Workflow → Build Vite App → GitHub Pages
 - **JavaScript (Node.js)** - GitHub Actions transformation scripts
 - **Shell/Bash** - GitHub Actions workflow orchestration
 
-# Unit Tests
+# Testing
+## Unit Testing
+This project includes a lightweight custom test runner that verifies the core logic for:
 
-**Files**: `src/tests.ts` and `run-tests.js`
+- Fitzpatrick skin type scoring  
+- Skin type extraction  
+- UV reapplication timing rules
 
-**Tests**:
-1. Fitzpatrick Type I (score 0-7)
-2. Fitzpatrick Type II (score 8-16)
-3. Fitzpatrick Type III (score 17-25)
-4. Fitzpatrick Type IV (score 26-30)
-5. Fitzpatrick Type VI (score 35+)
-6. Oily skin type extraction
-7. Dry skin type extraction
-8. Combination skin type extraction
-9. Sensitive skin type extraction
-10. Default normal skin type extraction
+### Tests
 
-**How to Test**:
+#### Fitzpatrick Scoring & Classification
+- Score boundaries for all Fitzpatrick types (I–VI)  
+- Correct mapping from numeric score → skin type  
+- Threshold edge cases  
 
-1. Run `node run-tests.js`
+#### Skin Type Extraction
+- Oily, dry, combination, and sensitive facial skin types
+- Default normal skin when no category matches  
 
-**Expected Output**: All 10 tests pass with "✅ All tests passed!" message
+#### UV Reapplication Logic
+- Correct lookup for UV categories  
+- Correct reapplication intervals  
+- Boundary conditions for min/max UV values  
+
+#### Additional Validation
+- Consistency of configuration tables  
+- Randomized integrity checks
+
+### Execution
+Run `node src/tests.ts`
+
+### Success Criteria
+If all tests pass, the test runner will display:
+```bash
+==================================================
+📊 Test Summary: 10/10 tests passed
+✅ All tests passed!
+==================================================
+```
+
+If any tests fail, the summary will instead show the number of failed tests, for example:
+```bash
+==================================================
+📊 Test Summary: 8/10 tests passed
+❌ 2 test(s) failed
+==================================================
+```
+
+## Integration Testing
+### Tests
+
+**TC-01: Complete Quiz Flow**
+- Navigate to home → take quiz → answer 11 questions → verify results display
+- Expected: Correct Fitzpatrick type and skin type shown
+
+**TC-02: Results for All Fitzpatrick Types**
+- Complete quiz 6 times targeting each type (I-VI)
+- Expected: Each type displays correct information and sunscreen recommendations
+
+**TC-03: UV Reminder Timer**
+- Navigate to Reminder → allow geolocation → start timer
+- Expected: UV index fetched, timer starts and counts down correctly
+
+**TC-04: Navigation**
+- Test all page navigation (Home, Quiz, Results, Resources, Reminder)
+- Expected: All routes work, state preserved
+
+**TC-05: Mobile Responsive**
+- Test on iPhone 14 viewport (390×844)
+- Expected: All elements functional and readable
+
+### Execution
+1. Run: `npm run dev`
+2. Open http://localhost:5173/
+3. Execute TC-01 through TC-05
+
+## Performance Testing
+
+**Platforms**
+
+Browsers:
+- Chrome
+- Firefox
+- Safari
+- Edge
+
+Devices:
+- Desktop
+- Tablet
+- Smartphone
+
+**Execution**
+1. Open Chrome DevTools (F12)
+2. Navigate to Lighthouse tab
+3. Run performance audit
+4. Record scores
+
+**Success Criteria**
+- Initial load: < 3 seconds
+- Performance score: > 80
+
+## Acceptance Testing
+
+**Who**: Users with different skin tones and tech experience
+
+**Tasks**
+1. Complete quiz without guidance
+2. Review and understand results
+3. Explore sunscreen recommendations
+4. Set reminder timer
+
+**Success Criteria**
+- 90% complete quiz without help
+- 90% understand results
+
+## Tools Used
+- Node.js: Unit Testing
+- Google Chrome: Integration Testing, Acceptance Testing
+- Chrome DevTools: Performance Testing
+
+## Test Completion Criteria
+
+- [ ] All unit tests pass
+- [ ] All integration tests pass
+- [ ] All performance tests pass
+- [ ] All acceptance tests pass
+- [ ] No critical bugs reported
