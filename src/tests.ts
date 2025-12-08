@@ -5,9 +5,31 @@
 
 import { calculateFitzpatrickType, getSkinType } from "./utils/fitzpatrick";
 import type { QuizAnswers } from "./types/quiz";
+import { REAPPLICATION_TIME_TABLE, UV_LEVELS } from "./constants/config";
 
 // Test results tracker
 const testResults: { name: string; passed: boolean; message: string }[] = [];
+
+/**
+ * Helper function to calculate UV reapplication time
+ */
+function calculateReapplicationTime(uv: number, fitzpatrick: number): number {
+  const skinTypeTable = REAPPLICATION_TIME_TABLE[fitzpatrick as keyof typeof REAPPLICATION_TIME_TABLE] || REAPPLICATION_TIME_TABLE[3];
+
+  if (uv >= 11) return skinTypeTable['11+'];
+  if (uv >= 8) return skinTypeTable['8-10'];
+  if (uv >= 6) return skinTypeTable['6-7'];
+  if (uv >= 3) return skinTypeTable['3-5'];
+  return skinTypeTable['1-2'];
+}
+
+/**
+ * Helper function to get UV level classification
+ */
+function getUVLevel(uv: number): string {
+  const uvLevel = UV_LEVELS.find(level => uv >= level.threshold);
+  return uvLevel ? uvLevel.level : "Low";
+}
 
 /**
  * Helper function to run a test and track results
@@ -285,6 +307,191 @@ function testSensitiveSkinType() {
 }
 
 /**
+ * Test 12: UV Reapplication Time - Low UV
+ */
+function testUVReapplicationLowUV() {
+  const result = calculateReapplicationTime(1, 1);
+  return result === 120;
+}
+
+/**
+ * Test 13: UV Reapplication Time - Moderate UV
+ */
+function testUVReapplicationModerateUV() {
+  const result = calculateReapplicationTime(4, 3);
+  return result === 100;
+}
+
+/**
+ * Test 14: UV Reapplication Time - High UV
+ */
+function testUVReapplicationHighUV() {
+  const result = calculateReapplicationTime(7, 4);
+  return result === 100;
+}
+
+/**
+ * Test 15: UV Reapplication Time - Very High UV
+ */
+function testUVReapplicationVeryHighUV() {
+  const result = calculateReapplicationTime(9, 5);
+  return result === 80;
+}
+
+/**
+ * Test 16: UV Reapplication Time - Extreme UV
+ */
+function testUVReapplicationExtremeUV() {
+  const result = calculateReapplicationTime(12, 6);
+  return result === 80;
+}
+
+/**
+ * Test 17: UV Level Classification - Low
+ */
+function testUVLevelLow() {
+  const result = getUVLevel(2);
+  return result === "Low";
+}
+
+/**
+ * Test 18: UV Level Classification - Moderate
+ */
+function testUVLevelModerate() {
+  const result = getUVLevel(4);
+  return result === "Moderate";
+}
+
+/**
+ * Test 19: UV Level Classification - High
+ */
+function testUVLevelHigh() {
+  const result = getUVLevel(7);
+  return result === "High";
+}
+
+/**
+ * Test 20: UV Level Classification - Very High
+ */
+function testUVLevelVeryHigh() {
+  const result = getUVLevel(9);
+  return result === "Very High";
+}
+
+/**
+ * Test 21: UV Level Classification - Extreme
+ */
+function testUVLevelExtreme() {
+  const result = getUVLevel(12);
+  return result === "Extreme";
+}
+
+/**
+ * Test 22: Boundary Score 7 (Type I)
+ */
+function testBoundaryScore7() {
+  const answers: QuizAnswers = {
+    eyeColor: "Light blue, gray or green",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Several",
+    sunReaction: "Blistering followed by peeling",
+    tanningDegree: "Light color tan",
+    tanningHours: "Seldom",
+    faceReaction: "Sensitive",
+    lastExposure: "More than 3 months ago",
+    faceExposure: "Never",
+    skinType: "Hydrated and comfortable",
+  };
+  const result = calculateFitzpatrickType(answers);
+  return result === 1;
+}
+
+/**
+ * Test 23: Boundary Score 8 (Type II)
+ */
+function testBoundaryScore8() {
+  const answers: QuizAnswers = {
+    eyeColor: "Light blue, gray or green",
+    hairColor: "Blonde",
+    skinColor: "Very Pale",
+    freckles: "Several",
+    sunReaction: "Blistering followed by peeling",
+    tanningDegree: "Light color tan",
+    tanningHours: "Seldom",
+    faceReaction: "Sensitive",
+    lastExposure: "2-3 months ago",
+    faceExposure: "Never",
+    skinType: "Hydrated and comfortable",
+  };
+  const result = calculateFitzpatrickType(answers);
+  return result === 2;
+}
+
+/**
+ * Test 24: Boundary Score 16 (Type II)
+ */
+function testBoundaryScore16() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue, gray, or green",
+    hairColor: "Chestnut/ Dark Blonde",
+    skinColor: "Pale with a beige tint",
+    freckles: "Few",
+    sunReaction: "Burns sometimes followed by peeling",
+    tanningDegree: "Reasonable tan",
+    tanningHours: "Sometimes",
+    faceReaction: "Normal",
+    lastExposure: "More than 3 months ago",
+    faceExposure: "Never",
+    skinType: "Hydrated and comfortable",
+  };
+  const result = calculateFitzpatrickType(answers);
+  return result === 2;
+}
+
+/**
+ * Test 25: Boundary Score 25 (Type III)
+ */
+function testBoundaryScore25() {
+  const answers: QuizAnswers = {
+    eyeColor: "Blue",
+    hairColor: "Dark brown",
+    skinColor: "Light brown",
+    freckles: "Incidental",
+    sunReaction: "Rare burns",
+    tanningDegree: "Tan very easily",
+    tanningHours: "Often",
+    faceReaction: "Very resistant",
+    lastExposure: "More than 3 months ago",
+    faceExposure: "Never",
+    skinType: "Hydrated and comfortable",
+  };
+  const result = calculateFitzpatrickType(answers);
+  return result === 3;
+}
+
+/**
+ * Test 26: Boundary Score 34 (Type V)
+ */
+function testBoundaryScore34() {
+  const answers: QuizAnswers = {
+    eyeColor: "Dark Brown",
+    hairColor: "Black",
+    skinColor: "Dark brown",
+    freckles: "None",
+    sunReaction: "Never had burns",
+    tanningDegree: "Turn dark brown quickly",
+    tanningHours: "Always",
+    faceReaction: "Very resistant",
+    lastExposure: "1-2 months ago",
+    faceExposure: "Sometimes",
+    skinType: "Hydrated and comfortable",
+  };
+  const result = calculateFitzpatrickType(answers);
+  return result === 5;
+}
+
+/**
  * Run all tests
  */
 export function runAllTests() {
@@ -365,6 +572,111 @@ export function runAllTests() {
     testSensitiveSkinType,
     "Correctly identifies sensitive skin type",
     "Failed to identify sensitive skin type"
+  );
+
+  runTest(
+    "Test 12: UV Reapplication (Low UV)",
+    testUVReapplicationLowUV,
+    "Correctly calculates reapplication time for low UV",
+    "Failed to calculate reapplication time for low UV"
+  );
+
+  runTest(
+    "Test 13: UV Reapplication (Moderate UV)",
+    testUVReapplicationModerateUV,
+    "Correctly calculates reapplication time for moderate UV",
+    "Failed to calculate reapplication time for moderate UV"
+  );
+
+  runTest(
+    "Test 14: UV Reapplication (High UV)",
+    testUVReapplicationHighUV,
+    "Correctly calculates reapplication time for high UV",
+    "Failed to calculate reapplication time for high UV"
+  );
+
+  runTest(
+    "Test 15: UV Reapplication (Very High UV)",
+    testUVReapplicationVeryHighUV,
+    "Correctly calculates reapplication time for very high UV",
+    "Failed to calculate reapplication time for very high UV"
+  );
+
+  runTest(
+    "Test 16: UV Reapplication (Extreme UV)",
+    testUVReapplicationExtremeUV,
+    "Correctly calculates reapplication time for extreme UV",
+    "Failed to calculate reapplication time for extreme UV"
+  );
+
+  runTest(
+    "Test 17: UV Level Classification (Low)",
+    testUVLevelLow,
+    "Correctly classifies low UV level",
+    "Failed to classify low UV level"
+  );
+
+  runTest(
+    "Test 18: UV Level Classification (Moderate)",
+    testUVLevelModerate,
+    "Correctly classifies moderate UV level",
+    "Failed to classify moderate UV level"
+  );
+
+  runTest(
+    "Test 19: UV Level Classification (High)",
+    testUVLevelHigh,
+    "Correctly classifies high UV level",
+    "Failed to classify high UV level"
+  );
+
+  runTest(
+    "Test 20: UV Level Classification (Very High)",
+    testUVLevelVeryHigh,
+    "Correctly classifies very high UV level",
+    "Failed to classify very high UV level"
+  );
+
+  runTest(
+    "Test 21: UV Level Classification (Extreme)",
+    testUVLevelExtreme,
+    "Correctly classifies extreme UV level",
+    "Failed to classify extreme UV level"
+  );
+
+  runTest(
+    "Test 22: Boundary Score 7 (Type I)",
+    testBoundaryScore7,
+    "Correctly calculates Type I at boundary score 7",
+    "Failed at boundary score 7"
+  );
+
+  runTest(
+    "Test 23: Boundary Score 8 (Type II)",
+    testBoundaryScore8,
+    "Correctly calculates Type II at boundary score 8",
+    "Failed at boundary score 8"
+  );
+
+  runTest(
+    "Test 24: Boundary Score 16 (Type II)",
+    testBoundaryScore16,
+    "Correctly calculates Type II at boundary score 16",
+    "Failed at boundary score 16"
+  );
+
+  runTest(
+    "Test 25: Boundary Score 25 (Type III)",
+    testBoundaryScore25,
+    "Correctly calculates Type III at boundary score 25",
+    "Failed at boundary score 25"
+  );
+
+  runTest(
+    "Test 26: Boundary Score 34 (Type V)",
+    testBoundaryScore34,
+    "Correctly calculates Type V at boundary score 34",
+    "Failed at boundary score 34"
   );
 
   // Print summary
